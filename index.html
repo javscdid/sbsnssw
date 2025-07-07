@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RooTopia Private Server</title>
+  <!-- Hubungkan ke style.css -->
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Teks telah disalin ke clipboard!");
+      }).catch(() => {
+        alert("Gagal menyalin teks.");
+      });
+    }
+
+    async function sendToDiscord() {
+      const name = document.getElementById('growid').value;
+      const email = document.getElementById('email').value;
+      const whatsapp = document.getElementById('whatsapp').value;
+      const message = document.getElementById('message').value;
+
+      const payload = {
+        username: 'RooTopia Bot',
+        embeds: [{
+          author: { name: 'RooTopia Contact' },
+          fields: [
+            { name: 'GrowID', value: name },
+            { name: 'Email', value: email },
+            { name: 'WhatsApp', value: whatsapp },
+            { name: 'Message', value: message }
+          ],
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      const res = await fetch('https://discord.com/api/webhooks/...', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        alert('Pesan terkirim! Tunggu balasan di email kamu ya.');
+        document.getElementById('discordForm').reset();
+      } else {
+        alert('Gagal kirim pesan — coba lagi.');
+      }
+    }
+  </script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#informasi">Server Event</a></li>
+      <li><a href="#download">Download Virtual Host & IP</a></li>
+      <li><a href="#kontak">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <header>
+      <img src="https://media.discordapp.net/…/20250703_180209.png" alt="Logo RooTopia">
+      <h1>RooTopia Private Server</h1>
+      <p>Server ini dibuat oleh Calvyn & Zyx — dapatkan custom item langka, profit, event seru, dan lebih banyak!</p>
+      <a href="https://discord.gg/hc8AzHa6FJ" class="btn">Join Discord</a>
+      <a href="https://chat.whatsapp.com/KNiZozpZgxp2ICfl0C9Z8X" class="btn outline">Join WhatsApp</a>
+    </header>
+
+    <section id="informasi">
+      <h2>Server Event</h2>
+      <p>Kami sedang membuat event yang total hadiahnya Rp175.000! Eventnya adalah MEMBUAT VIDEO PROMOTE. Kamu bebas post videonya dimana saja dengan ketentuan yang ada di discord server. Join discord RooTopia untuk informasi selengkapnya.</p>
+    </section>
+
+    <section id="download">
+      <h2>Download Virtual Host &amp; IP</h2>
+      <a href="https://www.mediafire.com/file/zjfafnqoyzk8f85/RooTopia1.txt/file" class="btn">Download Virtual Host</a>
+      <p><strong>Copy Powertunnel Link</strong></p>
+      <pre onclick="copyText('https://gtpshost.com/RooTopia1.txt')">https://gtpshost.com/RooTopia1.txt</pre>
+      <p><strong>Copy Windows IP</strong></p>
+      <pre onclick="copyText('159.223.42.117 growtopia1.com\n159.223.42.117 growtopia2.com\n159.223.42.117 www.growtopia1.com\n159.223.42.117 www.growtopia2.com\n159.223.42.117 RvLnd.here')">
+159.223.42.117 growtopia1.com
+159.223.42.117 growtopia2.com
+159.223.42.117 www.growtopia1.com
+159.223.42.117 www.growtopia2.com
+159.223.42.117 RvLnd.here
+      </pre>
+    </section>
+  </div>
+
+  <div class="contact-container" id="kontak">
+    <h2>Hubungi Kami</h2>
+    <div class="contact-info">
+      <button class="contact-card" type="button" onclick="copyText('https://wa.me/639097571277')">
+        Whatsapp Calvyn<br><small>Klik untuk copy</small>
+      </button>
+      <button class="contact-card" type="button" onclick="copyText('https://wa.me/6289608833355')">
+        Whatsapp Zyx<br><small>Klik untuk copy</small>
+      </button>
+    </div>
+
+    <form id="discordForm">
+      <fieldset>
+        <legend>Form Kontak RooTopia</legend>
+        <div>
+          <label for="growid">GrowID Anda:</label>
+          <input type="text" id="growid" name="growid" required>
+        </div>
+        <div>
+          <label for="email">Email Anda:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="whatsapp">WhatsApp Anda:</label>
+          <input type="tel" id="whatsapp" name="whatsapp" required>
+        </div>
+        <div>
+          <label for="message">Pesan Anda:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="button" class="btn" onclick="sendToDiscord()">Kirim Pesan</button>
+      </fieldset>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 RooTopia. All rights reserved.</p>
+  </footer>
+</body>
+</html>

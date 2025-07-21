@@ -1,131 +1,159 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RooTopia Private Server</title>
-  <!-- Hubungkan ke style.css -->
-  <link rel="stylesheet" href="style.css">
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calvyn GTPS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #fff);
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }header {
+  background-color: #00bcd4;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+.toggle-mode {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  background-color: #00bcd4;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.videos, .about, .pricing, .order-form, .social {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  font-size: 1.8em;
+  color: #00bcd4;
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.3);
+}
+
+.pricing-card {
+  display: inline-block;
+  margin: 10px;
+  padding: 20px;
+  border: 2px solid #00bcd4;
+  border-radius: 12px;
+  width: 200px;
+}
+
+form input, form textarea {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  background-color: #00bcd4;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .pricing-card {
+    width: 90%;
+  }
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .pricing-card, .dark-mode form input, .dark-mode form textarea {
+  border-color: #00bcd4;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+  </style>
   <script>
-    function copyText(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Teks telah disalin ke clipboard!");
-      }).catch(() => {
-        alert("Gagal menyalin teks.");
-      });
-    }
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }function submitOrder(event) {
+  event.preventDefault();
+  alert('Order Submitted!');
+}
 
-    async function sendToDiscord() {
-      const name = document.getElementById('growid').value;
-      const email = document.getElementById('email').value;
-      const whatsapp = document.getElementById('whatsapp').value;
-      const message = document.getElementById('message').value;
-
-      const payload = {
-        username: 'RooTopia Bot',
-        embeds: [{
-          author: { name: 'RooTopia Contact' },
-          fields: [
-            { name: 'GrowID', value: name },
-            { name: 'Email', value: email },
-            { name: 'WhatsApp', value: whatsapp },
-            { name: 'Message', value: message }
-          ],
-          timestamp: new Date().toISOString()
-        }]
-      };
-
-      const res = await fetch('https://discord.com/api/webhooks/...', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (res.ok) {
-        alert('Pesan terkirim! Tunggu balasan di email kamu ya.');
-        document.getElementById('discordForm').reset();
-      } else {
-        alert('Gagal kirim pesan — coba lagi.');
-      }
-    }
   </script>
-</head>
-<body>
-  <nav>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head><body>
+  <div class="toggle-mode" onclick="toggleDarkMode()">🌙 Toggle Mode</div>  <header>
+    Rullvy GTPS
+  </header>  <section class="hero">
+    <h1>WELCOME TO Calvyn GTPS</h1>
+    <button>Buy Now</button>
+  </section>  <section class="videos">
+    <h2>Latest Videos</h2>
+    <img src="https://cdn.discordapp.com/attachments/1335465868221743165/1396855021114753228/20250721_190312.png?ex=687f9a1d&is=687e489d&hm=15b6164e64f04c5b800f389d20355a7aed73d5693b01a195267c2751d53400cf&" alt="video thumbnail" width="300" style="border-radius: 12px;">
+  </section>  <section class="about">
+    <h2>What is GTPS?</h2>
+    <p>GTPS is a private server version of Growtopia with unique mods and features!</p>
     <ul>
-      <li><a href="#informasi">Server Event</a></li>
-      <li><a href="#download">Download Virtual Host & IP</a></li>
-      <li><a href="#kontak">Contact</a></li>
+      <li>⚡ Fast Server</li>
+      <li>🎮 Custom Items</li>
+      <li>🛡️ Anti Cheat</li>
     </ul>
-  </nav>
-
-  <div class="container">
-    <header>
-      <img src="https://media.discordapp.net/…/20250703_180209.png" alt="Logo RooTopia">
-      <h1>RooTopia Private Server</h1>
-      <p>Server ini dibuat oleh Calvyn & Zyx — dapatkan custom item langka, profit, event seru, dan lebih banyak!</p>
-      <a href="https://discord.gg/hc8AzHa6FJ" class="btn">Join Discord</a>
-      <a href="https://chat.whatsapp.com/KNiZozpZgxp2ICfl0C9Z8X" class="btn outline">Join WhatsApp</a>
-    </header>
-
-    <section id="informasi">
-      <h2>Server Event</h2>
-      <p>Kami sedang membuat event yang total hadiahnya Rp175.000! Eventnya adalah MEMBUAT VIDEO PROMOTE. Kamu bebas post videonya dimana saja dengan ketentuan yang ada di discord server. Join discord RooTopia untuk informasi selengkapnya.</p>
-    </section>
-
-    <section id="download">
-      <h2>Download Virtual Host &amp; IP</h2>
-      <a href="https://www.mediafire.com/file/zjfafnqoyzk8f85/RooTopia1.txt/file" class="btn">Download Virtual Host</a>
-      <p><strong>Copy Powertunnel Link</strong></p>
-      <pre onclick="copyText('https://gtpshost.com/RooTopia1.txt')">https://gtpshost.com/RooTopia1.txt</pre>
-      <p><strong>Copy Windows IP</strong></p>
-      <pre onclick="copyText('159.223.42.117 growtopia1.com\n159.223.42.117 growtopia2.com\n159.223.42.117 www.growtopia1.com\n159.223.42.117 www.growtopia2.com\n159.223.42.117 RvLnd.here')">
-159.223.42.117 growtopia1.com
-159.223.42.117 growtopia2.com
-159.223.42.117 www.growtopia1.com
-159.223.42.117 www.growtopia2.com
-159.223.42.117 RvLnd.here
-      </pre>
-    </section>
-  </div>
-
-  <div class="contact-container" id="kontak">
-    <h2>Hubungi Kami</h2>
-    <div class="contact-info">
-      <button class="contact-card" type="button" onclick="copyText('https://wa.me/639097571277')">
-        Whatsapp Calvyn<br><small>Klik untuk copy</small>
-      </button>
-      <button class="contact-card" type="button" onclick="copyText('https://wa.me/6289608833355')">
-        Whatsapp Zyx<br><small>Klik untuk copy</small>
-      </button>
-    </div>
-
-    <form id="discordForm">
-      <fieldset>
-        <legend>Form Kontak RooTopia</legend>
-        <div>
-          <label for="growid">GrowID Anda:</label>
-          <input type="text" id="growid" name="growid" required>
-        </div>
-        <div>
-          <label for="email">Email Anda:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-          <label for="whatsapp">WhatsApp Anda:</label>
-          <input type="tel" id="whatsapp" name="whatsapp" required>
-        </div>
-        <div>
-          <label for="message">Pesan Anda:</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
-        <button type="button" class="btn" onclick="sendToDiscord()">Kirim Pesan</button>
-      </fieldset>
+  </section>  <section class="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing-card">HEMAT<br>3K</div>
+    <div class="pricing-card">NORMAL<br>5K</div>
+    <div class="pricing-card">SKIP<br>10K</div>
+    <div class="pricing-card">MSKIP<br>15K</div>
+  </section>  <section class="order-form">
+    <h2>Order Now</h2>
+    <form onsubmit="submitOrder(event)">
+      <input type="text" placeholder="Your Whatsapp Number" required>
+      <input type="text" placeholder="Item to Order" required>
+      <textarea placeholder="Notes"></textarea>
+      <button type="submit">Submit</button>
     </form>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 RooTopia. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+  </section>  <section class="social">
+    <h2>Follow Us</h2>
+    <div class="social-icons">
+      <a href="https://discord.gg/FUpcdDUttu"><i class="fab fa-discord"></i></a>
+      <a href="https://www.youtube.com/@calvyn9668"><i class="fab fa-youtube"></i></a>
+      <a href="https://wa.me/639097571277"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </section></body></html>

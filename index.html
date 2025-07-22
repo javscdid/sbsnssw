@@ -4,64 +4,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calvyn GTPS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sora:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       scroll-behavior: smooth;
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(180deg, #000000, #222222, #f5f5f5);
-      color: #fff;
-      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #1a1a1a, #0e0e0e);
+      color: #eaeaea;
     }
     header {
-      text-align: center;
+      background: #111;
+      color: #00f0ff;
       padding: 20px;
+      text-align: center;
       font-size: 2em;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      font-weight: 600;
     }
 
-    /* 👤 PROFILE SECTION */
-    .profile {
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      padding: 10px 0;
+      backdrop-filter: blur(5px);
+    }
+    nav a {
+      color: #ccc;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #00f0ff;
+    }
+
+    .section {
+      padding: 60px 20px;
       text-align: center;
-      padding: 40px 20px 20px;
     }
     .profile img {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-    }
-    .profile-buttons {
-      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
     .profile-buttons a {
-      display: inline-block;
       margin: 10px;
-      padding: 12px 25px;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
+      display: inline-block;
+      padding: 10px 25px;
+      background: linear-gradient(90deg, #00f0ff, #0077ff);
       color: white;
-      border-radius: 30px;
+      border-radius: 25px;
       text-decoration: none;
-      transition: 0.3s;
+      transition: transform 0.3s;
     }
     .profile-buttons a:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #0072ff;
     }
 
-    .pricing {
-      padding: 60px 20px;
-      text-align: center;
-    }
     .pricing-cards {
       display: flex;
       flex-wrap: wrap;
@@ -69,93 +80,152 @@
       gap: 20px;
     }
     .pricing-card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #222;
       padding: 25px;
-      width: 200px;
       border-radius: 20px;
-      transition: transform 0.3s, box-shadow 0.3s;
+      width: 180px;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 1px solid #444;
     }
     .pricing-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(99,102,241,0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #00f0ff55;
     }
     .pricing-card h3 {
-      margin: 0;
-      font-size: 1.3em;
-      color: #93c5fd;
+      margin-bottom: 10px;
+      color: #00f0ff;
     }
 
-    .price-desc {
+    .price-desc p {
+      margin: 10px 0;
+      color: #bbb;
+    }
+
+    .order-button {
       margin-top: 30px;
-      text-align: center;
-      font-size: 1em;
-      color: #ddd;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
     }
-
-    .tools-section {
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .tools-section h2 {
-      margin-bottom: 20px;
-      color: #fff;
-    }
-    .tools-section a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      background: #333;
-      color: white;
-      border-radius: 20px;
+    .order-button a {
+      padding: 12px 30px;
+      background: #00f0ff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 30px;
       text-decoration: none;
       transition: 0.3s;
     }
-    .tools-section a:hover {
-      background: #555;
+    .order-button a:hover {
+      background: #00c0d0;
+    }
+
+    .tools-section a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border-radius: 15px;
+      text-decoration: none;
+    }
+
+    .animate {
+      opacity: 0;
+      transform: translateX(100px);
+      transition: all 0.8s ease-out;
+    }
+    .animate.active {
+      opacity: 1;
+      transform: translateX(0);
     }
   </style>
 </head>
 <body>
 
-  <header>Calvyn GTPS</header>
+<header>Calvyn GTPS</header>
 
-  <!-- 👤 Profile -->
-  <section class="profile">
-    <img src="https://cdn.discordapp.com/attachments/1335465868221743165/1397228982956593244/20250721_204531.png?ex=6880f664&is=687fa4e4&hm=5cc9b78dcd064c804b3d8633838d6466216bade3ec1e6cbb9da6bace3eaaf005&" alt="Profile">
-    <div class="profile-buttons">
-      <a href="https://wa.me/639097571277">WhatsApp</a>
-      <a href="https://www.youtube.com/@calvyn9668">YouTube</a>
-    </div>
-  </section>
+<!-- Navbar -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#pricing">Price</a>
+  <a href="#order">Order</a>
+  <a href="#tools">Tools</a>
+</nav>
 
-  <!-- 💰 Pricing -->
-  <section class="pricing" id="pricing">
-    <div class="pricing-cards">
-      <div class="pricing-card"><h3>HEMAT</h3><p>Rp 3.000</p></div>
-      <div class="pricing-card"><h3>NORMAL</h3><p>Rp 5.000</p></div>
-      <div class="pricing-card"><h3>SKIP</h3><p>Rp 10.000</p></div>
-      <div class="pricing-card"><h3>MEGASKIP</h3><p>Rp 15.000</p></div>
-    </div>
-    <div class="price-desc">
-      <p><b>HEMAT:</b> Hemat biaya, lebih lambat proses.</p>
-      <p><b>NORMAL:</b> Proses standar, cocok untuk kebanyakan orang.</p>
-      <p><b>SKIP:</b> Prioritas cepat dalam antrean.</p>
-      <p><b>MEGASKIP:</b> Prioritas paling cepat, tanpa nunggu.</p>
-    </div>
-  </section>
+<!-- Profile -->
+<section class="section profile" id="home">
+  <img src="https://cdn.discordapp.com/attachments/1335465868221743165/1397228982956593244/20250721_204531.png?ex=6880f664&is=687fa4e4&hm=5cc9b78dcd064c804b3d8633838d6466216bade3ec1e6cbb9da6bace3eaaf005&" alt="Profile">
+  <div class="profile-buttons">
+    <a href="https://wa.me/639097571277">WhatsApp</a>
+    <a href="https://www.youtube.com/@calvyn9668">YouTube</a>
+  </div>
+</section>
 
-  <!-- 🔗 Tools Links -->
-  <section class="tools-section">
-    <h2>Useful Tools</h2>
-    <a href="https://m.apkpure.com/powertunnel/io.github.krlvm.powertunnel.android/download" target="_blank">PowerTunnel</a>
-    <a href="https://www.google.com/amp/s/apkpure.com/vhost/com.haxor.Vhosts/amp" target="_blank">Virtual Host</a>
-    <a href="https://apkpure.com/id/no-root-hosts-go/dns.hosts.server.change/download?_gl=1*ryxxci*_ga*YW1wLTVZR2JlMXJlS1BtajNhWm1JZFdJV1VuVFJxOUI1eGVCZ2txdnpRT3hwc181aEMyZ0gxYUJXQlBEMkRyeVF3dGE." target="_blank">Hosts Go</a>
-  </section>
+<!-- Price Section -->
+<section class="section pricing" id="pricing">
+  <h2 class="animate">PRICE</h2>
+  <div class="pricing-cards">
+    <div class="pricing-card" onclick="scrollToOrder()">
+      <h3>HEMAT</h3><p>Rp 3.000</p>
+    </div>
+    <div class="pricing-card" onclick="scrollToOrder()">
+      <h3>NORMAL</h3><p>Rp 5.000</p>
+    </div>
+    <div class="pricing-card" onclick="scrollToOrder()">
+      <h3>SKIP</h3><p>Rp 10.000</p>
+    </div>
+    <div class="pricing-card" onclick="scrollToOrder()">
+      <h3>MEGASKIP</h3><p>Rp 15.000</p>
+    </div>
+  </div>
+
+  <div class="price-desc animate">
+    <p><b>HEMAT:</b> Proses lambat, cocok buat irit.</p>
+    <p><b>NORMAL:</b> Proses standar, rata-rata pengguna pakai ini.</p>
+    <p><b>SKIP:</b> Langsung masuk prioritas antrean.</p>
+    <p><b>MEGASKIP:</b> Lewat semua, gak perlu nunggu.</p>
+  </div>
+
+  <div class="order-button">
+    <a href="https://wa.me/639097571277">Order Now? Click here</a>
+  </div>
+</section>
+
+<!-- Order -->
+<section class="section" id="order">
+  <h2 class="animate">ORDER</h2>
+  <p class="animate">Langsung hubungi WhatsApp gue buat order lebih cepat dan aman!</p>
+  <a class="order-button" href="https://wa.me/639097571277">
+    <strong>Klik buat Order Sekarang</strong>
+  </a>
+</section>
+
+<!-- Tools -->
+<section class="section" id="tools">
+  <h2 class="animate">TOOLS</h2>
+  <div class="animate">
+    <a href="#">PowerTunnel APK</a>
+    <a href="#">Virtual Host</a>
+    <a href="#">Hosts Go</a>
+  </div>
+</section>
+
+<script>
+  // Scroll to order section
+  function scrollToOrder() {
+    document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Animate on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>

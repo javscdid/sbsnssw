@@ -118,14 +118,19 @@
       background: #00c0d0;
     }
 
-    .tools-section a {
+    .tools-buttons a {
       display: inline-block;
       margin: 10px;
-      padding: 10px 20px;
-      background: #333;
+      padding: 12px 25px;
+      background: linear-gradient(to right, #333, #555);
       color: #fff;
-      border-radius: 15px;
+      border-radius: 20px;
       text-decoration: none;
+      transition: 0.3s;
+    }
+    .tools-buttons a:hover {
+      background: #777;
+      transform: scale(1.05);
     }
 
     .animate {
@@ -147,13 +152,13 @@
 <nav>
   <a href="#home">Home</a>
   <a href="#pricing">Price</a>
-  <a href="#order">Order</a>
+  <a href="#gtps">Apa Itu GTPS</a>
   <a href="#tools">Tools</a>
 </nav>
 
 <!-- Profile -->
 <section class="section profile" id="home">
-  <img src="" alt="Profile">
+  <img src="https://cdn.discordapp.com/attachments/1335465868221743165/1397228982956593244/20250721_204531.png?ex=6880f664&is=687fa4e4&hm=5cc9b78dcd064c804b3d8633838d6466216bade3ec1e6cbb9da6bace3eaaf005&" alt="Profile">
   <div class="profile-buttons">
     <a href="https://wa.me/639097571277">WhatsApp</a>
     <a href="https://www.youtube.com/@calvyn9668">YouTube</a>
@@ -164,25 +169,25 @@
 <section class="section pricing" id="pricing">
   <h2 class="animate">PRICE</h2>
   <div class="pricing-cards">
-    <div class="pricing-card" onclick="scrollToOrder()">
+    <div class="pricing-card" onclick="scrollToGTPS()">
       <h3>HEMAT</h3><p>Rp 3.000</p>
     </div>
-    <div class="pricing-card" onclick="scrollToOrder()">
+    <div class="pricing-card" onclick="scrollToGTPS()">
       <h3>NORMAL</h3><p>Rp 5.000</p>
     </div>
-    <div class="pricing-card" onclick="scrollToOrder()">
+    <div class="pricing-card" onclick="scrollToGTPS()">
       <h3>SKIP</h3><p>Rp 10.000</p>
     </div>
-    <div class="pricing-card" onclick="scrollToOrder()">
+    <div class="pricing-card" onclick="scrollToGTPS()">
       <h3>MEGASKIP</h3><p>Rp 15.000</p>
     </div>
   </div>
 
   <div class="price-desc animate">
-    <p><b>HEMAT:</b> Proses lambat, cocok buat irit.</p>
-    <p><b>NORMAL:</b> Proses standar, rata-rata pengguna pakai ini.</p>
-    <p><b>SKIP:</b> Langsung masuk prioritas antrean.</p>
-    <p><b>MEGASKIP:</b> Lewat semua, gak perlu nunggu.</p>
+    <p><b>HEMAT:</b> Lebih hemat untuk owner pemula.</p>
+    <p><b>NORMAL:</b> Lebih didahulukan daripada HEMAT, rata-rata pengguna pakai ini.</p>
+    <p><b>SKIP:</b> Lebih didahulukan daripada NORMAL, cocok untuk yang gamau nunggu lama.</p>
+    <p><b>MEGASKIP:</b> Didahulukan dari semua paket, cocok yang buru-buru.</p>
   </div>
 
   <div class="order-button">
@@ -190,32 +195,27 @@
   </div>
 </section>
 
-<!-- Order -->
-<section class="section" id="order">
-  <h2 class="animate">ORDER</h2>
-  <p class="animate">Langsung hubungi WhatsApp gue buat order lebih cepat dan aman!</p>
-  <a class="order-button" href="https://wa.me/639097571277">
-    <strong>Klik buat Order Sekarang</strong>
-  </a>
+<!-- GTPS Info -->
+<section class="section" id="gtps">
+  <h2 class="animate">Apa Itu GTPS?</h2>
+  <p class="animate">GTPS adalah singkatan dari Growtopia Private Server, yaitu server buatan komunitas yang punya fitur custom seperti item eksklusif, event unik, dan sistem anti-cheat. Kamu bisa bermain bebas tanpa batas seperti di Growtopia asli, bahkan lebih seru!</p>
 </section>
 
 <!-- Tools -->
 <section class="section" id="tools">
   <h2 class="animate">TOOLS</h2>
-  <div class="animate">
-    <a href="#">PowerTunnel APK</a>
-    <a href="#">Virtual Host</a>
-    <a href="#">Hosts Go</a>
+  <div class="tools-buttons animate">
+    <a href="https://m.apkpure.com/powertunnel/io.github.krlvm.powertunnel.android/download">Download PowerTunnel</a>
+    <a href="https://www.google.com/amp/s/apkpure.com/vhost/com.haxor.Vhosts/amp">Download Virtual Host</a>
+    <a href="https://apkpure.com/id/no-root-hosts-go/dns.hosts.server.change/download?_gl=1*ryxxci*_ga*YW1wLTVZR2JlMXJlS1BtajNhWm1JZFdJV1VuVFJxOUI1eGVCZ2txdnpRT3hwc181aEMyZ0gxYUJXQlBEMkRyeVF3dGE.">Download Hosts Go</a>
   </div>
 </section>
 
 <script>
-  // Scroll to order section
-  function scrollToOrder() {
-    document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+  function scrollToGTPS() {
+    document.getElementById("gtps").scrollIntoView({ behavior: "smooth" });
   }
 
-  // Animate on scroll
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {

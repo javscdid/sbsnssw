@@ -1,365 +1,164 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Calvyn — FAQ (Mewah, Hitam Merah)</title>
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calvyn GTPS</title>
 <style>
-  :root{
-    --bg-0:#040404;
-    --bg-1:#0b0b0b;
-    --card:#0f0f10;
-    --accent:#b71c1c; /* merah mewah */
-    --muted:#bfbfbf;
-    --glass: rgba(255,255,255,0.03);
-    --radius:14px;
-    --max-width:1100px;
-  }
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
 
-  /* Basic reset */
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-0),#070303);color:#eee;font-family:Inter,system-ui,Segoe UI,Roboto,-apple-system; -webkit-font-smoothing:antialiased}
-  a{color:inherit}
-
-  /* Layout: full screen */
-  .page{min-height:100vh;display:flex;flex-direction:column;}
-  header{
-    position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;
-    background:linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.20));
-    backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.02);z-index:60;
-  }
-
-  /* Logo */
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{height:48px;width:48px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg,#150000,#2a0000)}
-  .brand .title{font-family:'Cormorant Garamond', serif;font-size:16px;font-weight:600;color:var(--accent);letter-spacing:.6px}
-  .brand .sub{font-size:12px;color:var(--muted)}
-
-  /* Controls */
-  .controls{display:flex;gap:10px;align-items:center}
-  .btn {
-    background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:10px 14px;border-radius:10px;color:#fff;font-weight:600;cursor:pointer;
-    transition:transform .14s ease, background .14s;
-  }
-  .btn:active{transform:translateY(1px)}
-  .btn.join{
-    background:linear-gradient(180deg,#28bd4a,#1f8f3a);color:#041b0f;border:none;
-    box-shadow: 0 8px 30px rgba(40,189,74,0.09);
-  }
-
-  /* Menu drawer (right) */
-  .drawer {
-    position:fixed;top:0;right:-380px;bottom:0;width:360px;background:linear-gradient(180deg,var(--card),#0b0b0b);
-    box-shadow:-30px 0 80px rgba(0,0,0,0.6);padding:34px 22px;transition:right .36s cubic-bezier(.2,.9,.2,1);z-index:80;border-left:1px solid rgba(255,255,255,0.02)
-  }
-  .drawer.open{right:0}
-  .drawer h3{font-family:'Cormorant Garamond';color:var(--accent);margin:0 0 8px 0}
-  .drawer p{color:var(--muted);font-size:13px;margin:0 0 18px 0}
-  .navlink{display:block;padding:12px;border-radius:10px;color:#fff;text-decoration:none;margin:6px 0;background:transparent;border:1px solid rgba(255,255,255,0.02)}
-  .navlink:hover{background:rgba(183,28,28,0.06);border-color:rgba(183,28,28,0.12)}
-
-  /* Main hero + content wrapper */
-  main{margin-top:72px;display:flex;flex-direction:column;align-items:center;gap:28px;padding:34px 20px 80px}
-  .container{width:100%;max-width:var(--max-width)}
-
-  /* Hero */
-  .hero{
-    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
-    border-radius:var(--radius);padding:28px;border:1px solid rgba(255,255,255,0.02);display:flex;gap:24px;align-items:center;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.6)
-  }
-  .hero-left{flex:1}
-  .hero-title{font-family:'Cormorant Garamond';font-size:34px;color:var(--accent);margin:0}
-  .hero-sub{color:var(--muted);margin-top:10px;line-height:1.6;font-size:15px}
-
-  .hero-cta{margin-top:18px;display:flex;gap:12px}
-  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px 12px;border-radius:10px;color:var(--muted);font-weight:600}
-
-  /* FAQ area */
-  .faq-wrap{margin-top:18px;display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
-  @media (max-width:980px){ .faq-wrap{grid-template-columns:1fr} }
-
-  /* Left: FAQ list (accordion style). Each item expands downward; only one open at time */
-  .faq-list{display:flex;flex-direction:column;gap:12px}
-  .faq-item{
-    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
-    border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.02);overflow:hidden;
-    transition:box-shadow .28s ease;
-  }
-  .faq-item.active{box-shadow:0 18px 40px rgba(183,28,28,0.06)}
-  .q{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;
-  }
-  .q h4{font-family:'Cormorant Garamond';margin:0;color:var(--accent);font-size:18px}
-  .q .meta{color:var(--muted);font-size:13px}
-
-  /* Answer collapsible - smooth height transition */
-  .answer{
-    margin-top:12px;color:#ddd;line-height:1.6;font-size:14.5px;
-    max-height:0;overflow:hidden;transition:max-height .36s cubic-bezier(.2,.9,.2,1),opacity .24s;
-    opacity:0;padding-bottom:0;
-  }
-  .faq-item.open .answer{
-    max-height:1200px; /* large value for smooth expand */
-    opacity:1;padding-bottom:8px;
-  }
-
-  /* Nav tiny controls for FAQ (magnet next/prev) */
-  .faq-controls{display:flex;gap:10px;margin-top:10px}
-  .ctrl {padding:8px 12px;border-radius:8px;background:var(--glass);border:1px solid rgba(255,255,255,0.02);cursor:pointer;font-weight:600}
-
-  /* Right column: info card */
-  .info-card{background:linear-gradient(180deg,#0b0b0b,#0f0f0f);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.02)}
-  .info-card h5{margin:0;color:var(--accent);font-family:'Cormorant Garamond';font-size:16px}
-  .info-card p{color:var(--muted);font-size:13px;margin-top:8px}
-
-  /* footer */
-  footer{margin-top:30px;padding:20px 0;color:var(--muted);text-align:center;font-size:13px}
-
-  /* Small helpers */
-  .small{font-size:13px;color:var(--muted)}
-  .kbd{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:6px;font-weight:600}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+    }
+    body {
+        background: linear-gradient(135deg, #000000, #1a0000);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+    }
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #ff1a1a;
+    }
+    nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5px 0;
+        background: #ff1a1a;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: 0.3s;
+        display: block;
+    }
+    nav a:hover {
+        background: #b30000;
+    }
+    .menu-btn {
+        background: #ff1a1a;
+        border: none;
+        padding: 10px 15px;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .hero {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+        color: #ff4d4d;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s;
+    }
+    .hero p {
+        font-size: 1.2rem;
+        margin-top: 15px;
+        max-width: 600px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s 0.3s;
+    }
+    .show {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    .join-btn {
+        display: inline-block;
+        background: #ff1a1a;
+        padding: 12px 20px;
+        margin-top: 25px;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .join-btn:hover {
+        background: #b30000;
+    }
 </style>
 </head>
 <body>
 
-<div class="page">
+<header>
+    <div class="logo">Calvyn GTPS</div>
+    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+    <nav id="menu">
+        <a href="calvyn.html">Home</a>
+        <a href="promote.html">Promote</a>
+        <a href="gtpstools.html">GTPS Tools</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
 
-  <!-- HEADER -->
-  <header>
-    <div class="brand">
-      <!-- ganti "logo.png" dengan path/logo lo -->
-      <img src="logo.png" alt="Logo Calvyn" id="siteLogo" onerror="this.style.visibility='hidden'">
-      <div>
-        <div class="title">Calvyn</div>
-        <div class="sub">Brand / Promote</div>
-      </div>
+<section class="hero">
+    <div>
+        <h1>Selamat Datang di Calvyn GTPS</h1>
+        <p>Tempat terbaik untuk bermain Growtopia Private Server dengan fitur keren, komunitas aktif, dan layanan promote yang cepat & terpercaya.</p>
+        <a class="join-btn" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D">📢 Join Calvyn GTPS Group</a>
     </div>
-
-    <div class="controls">
-      <button class="btn" onclick="scrollToSection('faq')">FAQ</button>
-      <a class="btn ghost" href="promote.html">Promote</a>
-      <a class="btn join" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">Join Group</a>
-      <button id="menuBtn" class="btn" aria-label="Open menu" title="Menu">☰</button>
-    </div>
-  </header>
-
-  <!-- DRAWER / MENU -->
-  <aside class="drawer" id="drawer" aria-hidden="true">
-    <h3>Menu</h3>
-    <p>Quick navigation</p>
-    <a class="navlink" href="calvyn.html">Home</a>
-    <a class="navlink" href="promote.html">Promote</a>
-    <a class="navlink" href="gtpstools.html">GTPS Tools</a>
-    <a class="navlink" href="contact.html">Contact</a>
-    <a class="navlink" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">Join CalvynGTPS Group</a>
-  </aside>
-
-  <!-- MAIN -->
-  <main>
-    <div class="container">
-
-      <!-- HERO -->
-      <section class="hero" aria-labelledby="heroTitle">
-        <div class="hero-left">
-          <h1 id="heroTitle" class="hero-title">Perkenalan singkat</h1>
-          <p class="hero-sub">Halo — ini halaman yang elegan dan ringkas untuk memperkenalkanmu. Desain fokus, tipografi mewah, dan interaksi halus.</p>
-
-          <div class="hero-cta">
-            <a class="btn" href="promote.html">Lihat Paket</a>
-            <a class="btn ghost" href="gtpstools.html">Tools & Tutorial</a>
-          </div>
-
-          <div style="margin-top:14px" class="small">Butuh bantuan cepat? Tekan <span class="kbd">Join Group</span> untuk support.</div>
-        </div>
-
-        <div style="width:360px">
-          <div style="display:flex;flex-direction:column;gap:10px">
-            <div style="background:linear-gradient(180deg,#140000,#2b0000);border-radius:12px;padding:18px;text-align:center;color:var(--accent);font-family:'Cormorant Garamond'">CALVYN</div>
-            <div style="background:linear-gradient(180deg,#0b0b0b,#0f0f0f);border-radius:12px;padding:12px;color:var(--muted);font-size:13px">Ready to promote — paket mulai Rp 3.000</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section style="margin-top:20px" id="faq" aria-labelledby="faqTitle">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <h2 id="faqTitle" style="font-family:'Cormorant Garamond';color:var(--accent);margin:0">FAQ</h2>
-          <div class="faq-controls">
-            <button class="ctrl" id="prevBtn" title="Prev">Prev</button>
-            <button class="ctrl" id="nextBtn" title="Next">Next</button>
-          </div>
-        </div>
-
-        <div class="faq-wrap">
-          <!-- Left: list -->
-          <div class="faq-list" id="faqList" role="list">
-            <!-- FAQ items (ubah/isi sesuai kebutuhan) -->
-            <article class="faq-item" data-index="0" role="listitem" tabindex="0">
-              <div class="q" onclick="toggleFAQ(0)" aria-expanded="false">
-                <h4>Apa layanan promote yang tersedia?</h4>
-                <div class="meta">Klik untuk lihat jawaban</div>
-              </div>
-              <div class="answer">
-                <p>Kami menyediakan berbagai paket promote: HEMAT (Rp 3.000), NORMAL (Rp 5.000), SKIP (Rp 10.000), MEGASKIP (Rp 15.000), dan SKIP SERVER (Rp 5.000). Semua paket dijalankan dengan metode aman tanpa exploit.</p>
-                <p style="margin-top:10px" class="small">Order via WhatsApp atau lihat halaman Promote untuk detail.</p>
-              </div>
-            </article>
-
-            <article class="faq-item" data-index="1" role="listitem" tabindex="0">
-              <div class="q" onclick="toggleFAQ(1)" aria-expanded="false">
-                <h4>Berapa lama proses promote?</h4>
-                <div class="meta">Estimasi waktu</div>
-              </div>
-              <div class="answer">
-                <p>Estimasi default 24–72 jam tergantung paket dan antrian. Paket SKIP / MEGASKIP akan mempercepat proses dengan prioritas lebih tinggi.</p>
-              </div>
-            </article>
-
-            <article class="faq-item" data-index="2" role="listitem" tabindex="0">
-              <div class="q" onclick="toggleFAQ(2)" aria-expanded="false">
-                <h4>Bagaimana cara order?</h4>
-                <div class="meta">Langkah order</div>
-              </div>
-              <div class="answer">
-                <p>Ketuk tombol "Order via WhatsApp" di halaman Promote atau hubungi langsung lewat tombol Join Group / kontak. Sertakan nama server dan paket yang diinginkan.</p>
-              </div>
-            </article>
-
-            <article class="faq-item" data-index="3" role="listitem" tabindex="0">
-              <div class="q" onclick="toggleFAQ(3)" aria-expanded="false">
-                <h4>Apakah ada garansi hasil?</h4>
-                <div class="meta">Kebijakan</div>
-              </div>
-              <div class="answer">
-                <p>Kami optimalkan metode promote. Hasil dipengaruhi banyak faktor (waktu, server, dan audience). Untuk kasus khusus, hubungi support agar bisa dicari solusi.</p>
-              </div>
-            </article>
-
-            <article class="faq-item" data-index="4" role="listitem" tabindex="0">
-              <div class="q" onclick="toggleFAQ(4)" aria-expanded="false">
-                <h4>Apa syarat & ketentuan?</h4>
-                <div class="meta">Syarat</div>
-              </div>
-              <div class="answer">
-                <p>Kami tidak menggunakan cheat/exploit. Pemilik server bertanggung jawab atas konten. Pembayaran non-refundable kecuali ada pelanggaran nyata dari layanan kami.</p>
-              </div>
-            </article>
-
-          </div>
-
-          <!-- Right: info card -->
-          <aside>
-            <div class="info-card">
-              <h5>Perlu bantuan cepat?</h5>
-              <p>Gunakan tombol Join Group untuk chat dan support. Atau klik Contact untuk detail kontak pribadi.</p>
-              <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-                <a class="btn" href="contact.html">Contact</a>
-                <a class="btn join" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">Join Group</a>
-              </div>
-            </div>
-          </aside>
-
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <footer>© 2025 Calvyn — All rights reserved</footer>
-</div>
+</section>
 
 <script>
-  // Drawer toggle
-  const drawer = document.getElementById('drawer');
-  const menuBtn = document.getElementById('menuBtn');
-  menuBtn.addEventListener('click', () => {
-    const open = drawer.classList.toggle('open');
-    drawer.setAttribute('aria-hidden', !open);
-    // focus management
-    if(open) drawer.querySelector('.navlink')?.focus();
-  });
-
-  // FAQ logic: accordion + next/prev with magnet effect
-  const faqItems = Array.from(document.querySelectorAll('.faq-item'));
-  let activeIndex = 0;
-
-  function closeAll(){
-    faqItems.forEach(i=>{
-      i.classList.remove('open','active');
-      i.querySelector('.q').setAttribute('aria-expanded','false');
-    });
-  }
-
-  function openIndex(idx, scroll=true){
-    if(idx < 0 || idx >= faqItems.length) return;
-    closeAll();
-    const el = faqItems[idx];
-    el.classList.add('open','active');
-    el.querySelector('.q').setAttribute('aria-expanded','true');
-    activeIndex = idx;
-    // smooth scroll to the FAQ item (magnet-like)
-    if(scroll){
-      el.scrollIntoView({behavior:'smooth', block:'center'});
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
     }
-  }
 
-  function toggleFAQ(idx){
-    const el = faqItems[idx];
-    const isOpen = el.classList.contains('open');
-    if(isOpen){
-      el.classList.remove('open','active');
-      el.querySelector('.q').setAttribute('aria-expanded','false');
-    } else {
-      openIndex(idx);
+    function revealOnScroll() {
+        const heroH1 = document.querySelector('.hero h1');
+        const heroP = document.querySelector('.hero p');
+        const triggerBottom = window.innerHeight * 0.85;
+
+        if (heroH1.getBoundingClientRect().top < triggerBottom) {
+            heroH1.classList.add('show');
+        }
+        if (heroP.getBoundingClientRect().top < triggerBottom) {
+            heroP.classList.add('show');
+        }
     }
-  }
 
-  // Next / Prev
-  document.getElementById('nextBtn').addEventListener('click', ()=>{
-    const next = Math.min(activeIndex + 1, faqItems.length - 1);
-    openIndex(next);
-  });
-  document.getElementById('prevBtn').addEventListener('click', ()=>{
-    const prev = Math.max(activeIndex - 1, 0);
-    openIndex(prev);
-  });
-
-  // keyboard navigation (optional)
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'ArrowDown'){ // next
-      const next = Math.min(activeIndex + 1, faqItems.length - 1);
-      openIndex(next);
-    } else if(e.key === 'ArrowUp'){ // prev
-      const prev = Math.max(activeIndex - 1, 0);
-      openIndex(prev);
-    } else if(e.key === 'Escape'){
-      drawer.classList.remove('open');
-      drawer.setAttribute('aria-hidden','true');
-    }
-  });
-
-  // initial open first
-  window.addEventListener('load', ()=> openIndex(0,false));
-
-  // small accessibility: clicking Enter on a focused faq toggles it
-  faqItems.forEach((it, idx)=> {
-    it.addEventListener('keydown', (ev)=>{
-      if(ev.key === 'Enter' || ev.key === ' '){
-        ev.preventDefault();
-        toggleFAQ(idx);
-      }
-    })
-  });
-
-  // scroll to FAQ helper
-  function scrollToSection(id){
-    document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'center'});
-  }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
 </script>
 
 </body>

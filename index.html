@@ -5,43 +5,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CalvynGTPS</title>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background: linear-gradient(135deg, #000000, #0a3d62);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: white;
-        text-align: center;
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0a0a0a; /* hitam dominan */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    img {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        border: 4px solid #1e90ff;
-        box-shadow: 0 0 20px rgba(30, 144, 255, 0.7);
-        margin-bottom: 20px;
-    }
-    h1 {
-        font-size: 2.5rem;
-        margin: 0;
-        color: #1e90ff;
-        text-shadow: 0 0 15px rgba(30, 144, 255, 0.8);
-    }
-    p {
-        font-size: 1.2rem;
-        max-width: 500px;
-        color: #e0e0e0;
-    }
+  }
+
+  img.profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #004aad; /* biru tua */
+    box-shadow: 0 0 15px #004aad;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    color: #004aad; /* biru tua */
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    background-color: #004aad; /* biru tua */
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    box-shadow: 0 0 10px #004aad;
+  }
+
+  .btn:hover {
+    background-color: #0066cc;
+    box-shadow: 0 0 20px #0066cc;
+  }
+
+  .menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #004aad;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 0 10px #004aad;
+  }
+
+  .menu:hover {
+    background-color: #0066cc;
+    box-shadow: 0 0 15px #0066cc;
+  }
 </style>
 </head>
 <body>
-    <img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png?ex=68971176&is=6895bff6&hm=7d64188bfd82f3759ab8628ef0b799f45bde02473ce46925197e3424b0307277&" alt="Foto CalvynGTPS">
-    <h1>Selamat Datang di CalvynGTPS</h1>
-    <p>Server GTPS terbaik dengan pengalaman bermain yang seru, aman, dan penuh fitur eksklusif untuk kamu semua!</p>
+  <button class="menu" onclick="alert('Menu akan datang nanti 😎')">☰ Menu</button>
+
+  <img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png?ex=68971176&is=6895bff6&hm=7d64188bfd82f3759ab8628ef0b799f45bde02473ce46925197e3424b0307277&" 
+       alt="Foto CalvynGTPS" 
+       class="profile fade-in" 
+       style="animation-delay: 0.2s;">
+
+  <h1 class="fade-in" style="animation-delay: 0.5s;">Selamat Datang di CalvynGTPS</h1>
+
+  <a href="https://chat.whatsapp.com/Dsj3RgQOsswFU3ZX1B0pNR?mode=ac_t" class="btn fade-in" style="animation-delay: 0.8s;">📱 Join CalvynGTPS Group</a>
 </body>
 </html>

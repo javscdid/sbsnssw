@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calvyn GTPS</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap');
 
     * {
         margin: 0;
@@ -14,7 +14,7 @@
         font-family: 'Montserrat', sans-serif;
     }
     body {
-        background: linear-gradient(135deg, #000000, #1a0000);
+        background: linear-gradient(135deg, #0d0d0d, #1a0000 40%, #4d0000 80%);
         color: white;
         min-height: 100vh;
         display: flex;
@@ -31,70 +31,91 @@
         align-items: center;
         padding: 15px 25px;
         z-index: 1000;
-        box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 2px 12px rgba(255, 0, 0, 0.25);
     }
     .logo {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #ff1a1a;
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: #ff3333;
+        letter-spacing: 1px;
     }
     nav {
         display: none;
         flex-direction: column;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(10, 0, 0, 0.97);
         position: absolute;
         top: 60px;
         right: 20px;
         padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+        animation: fadeIn 0.3s ease forwards;
     }
     nav a {
         color: white;
         text-decoration: none;
-        padding: 10px;
-        margin: 5px 0;
-        background: #ff1a1a;
-        border-radius: 5px;
+        padding: 10px 14px;
+        margin: 6px 0;
+        background: linear-gradient(90deg, #ff1a1a, #b30000);
+        border-radius: 6px;
         font-weight: 600;
-        transition: 0.3s;
-        display: block;
+        transition: all 0.3s ease;
     }
     nav a:hover {
-        background: #b30000;
+        background: linear-gradient(90deg, #ff4d4d, #cc0000);
+        transform: translateX(4px);
     }
     .menu-btn {
-        background: #ff1a1a;
+        background: linear-gradient(90deg, #ff1a1a, #b30000);
         border: none;
         padding: 10px 15px;
         color: white;
         font-size: 1rem;
         font-weight: bold;
-        border-radius: 5px;
+        border-radius: 6px;
         cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    .menu-btn:hover {
+        background: linear-gradient(90deg, #ff4d4d, #cc0000);
     }
     .hero {
         flex: 1;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
         padding: 0 20px;
     }
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
         color: #ff4d4d;
+        font-weight: 900;
         opacity: 0;
         transform: translateY(50px);
         transition: 1s;
     }
     .hero p {
-        font-size: 1.2rem;
-        margin-top: 15px;
-        max-width: 600px;
+        font-size: 1.05rem;
+        font-weight: 300;
+        margin-top: 12px;
+        max-width: 650px;
         opacity: 0;
         transform: translateY(50px);
         transition: 1s 0.3s;
+        line-height: 1.6;
+    }
+    .extra-text {
+        margin-top: 20px;
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: #ffcccc;
+        max-width: 600px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s 0.6s;
     }
     .show {
         opacity: 1 !important;
@@ -102,18 +123,23 @@
     }
     .join-btn {
         display: inline-block;
-        background: #ff1a1a;
+        background: linear-gradient(90deg, #ff1a1a, #b30000);
         padding: 12px 20px;
         margin-top: 25px;
         border-radius: 6px;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: bold;
         color: white;
         text-decoration: none;
-        transition: 0.3s;
+        transition: all 0.3s ease;
     }
     .join-btn:hover {
-        background: #b30000;
+        background: linear-gradient(90deg, #ff4d4d, #cc0000);
+        transform: scale(1.05);
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
     }
 </style>
 </head>
@@ -133,7 +159,10 @@
 <section class="hero">
     <div>
         <h1>Selamat Datang di Calvyn GTPS</h1>
-        <p>Tempat terbaik untuk bermain Growtopia Private Server dengan fitur keren, komunitas aktif, dan layanan promote yang cepat & terpercaya.</p>
+        <p>Bergabunglah dengan komunitas Growtopia Private Server yang penuh kreativitas, event seru, dan layanan cepat. Semua yang kamu butuhkan ada di sini.</p>
+        <div class="extra-text">
+            Dapatkan pengalaman bermain yang berbeda, mulai dari fitur unik, sistem promote yang cepat, hingga event mingguan yang selalu dinanti para pemain.
+        </div>
         <a class="join-btn" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D">📢 Join Calvyn GTPS Group</a>
     </div>
 </section>
@@ -141,20 +170,20 @@
 <script>
     function toggleMenu() {
         const menu = document.getElementById('menu');
-        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        if (menu.style.display === 'flex') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'flex';
+        }
     }
 
     function revealOnScroll() {
-        const heroH1 = document.querySelector('.hero h1');
-        const heroP = document.querySelector('.hero p');
-        const triggerBottom = window.innerHeight * 0.85;
-
-        if (heroH1.getBoundingClientRect().top < triggerBottom) {
-            heroH1.classList.add('show');
-        }
-        if (heroP.getBoundingClientRect().top < triggerBottom) {
-            heroP.classList.add('show');
-        }
+        document.querySelectorAll('.hero h1, .hero p, .extra-text').forEach(el => {
+            const triggerBottom = window.innerHeight * 0.85;
+            if (el.getBoundingClientRect().top < triggerBottom) {
+                el.classList.add('show');
+            }
+        });
     }
 
     window.addEventListener('scroll', revealOnScroll);

@@ -20,7 +20,7 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        padding-top: 80px; /* space utk header fixed */
+        padding-top: 80px; /* space for fixed header */
     }
 
     header {
@@ -88,13 +88,22 @@
         max-width: 700px;
         margin: 0 auto;
         padding: 20px;
+        text-align: center;
+    }
+
+    main img.logo-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid #f9d976;
+        margin-bottom: 15px;
+        box-shadow: 0 0 15px rgba(249, 217, 118, 0.6);
     }
 
     h2 {
         color: #f9d976;
         font-weight: 800;
-        margin-bottom: 20px;
-        text-align: center;
+        margin-bottom: 30px;
     }
 
     .package {
@@ -102,11 +111,19 @@
         border: 2px solid #f9d976;
         border-radius: 10px;
         padding: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         box-shadow: 0 0 10px rgba(249, 217, 118, 0.5);
         display: flex;
         justify-content: space-between;
         align-items: center;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .package.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .package-name {
@@ -119,6 +136,9 @@
         font-weight: 600;
         font-size: 1.2rem;
         color: white;
+        margin-left: 15px;
+        min-width: 110px;
+        text-align: right;
     }
 
     .buy-btn {
@@ -130,7 +150,8 @@
         border-radius: 6px;
         cursor: pointer;
         transition: background 0.3s;
-        margin-left: 15px;
+        margin-left: 20px;
+        flex-shrink: 0;
     }
 
     .buy-btn:hover {
@@ -152,6 +173,8 @@
 </header>
 
 <main>
+    <img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png" alt="Logo Calvyn GTPS" class="logo-img">
+
     <h2>Pilih Paket Promote</h2>
 
     <div class="package">
@@ -201,9 +224,26 @@
         const menu = document.getElementById('menu');
         menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
     }
+
     function goToContact() {
         window.location.href = 'contact.html';
     }
+
+    // Scroll reveal for packages
+    function revealPackages() {
+        const packages = document.querySelectorAll('.package');
+        const triggerBottom = window.innerHeight * 0.85;
+
+        packages.forEach(pkg => {
+            const top = pkg.getBoundingClientRect().top;
+            if (top < triggerBottom) {
+                pkg.classList.add('show');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', revealPackages);
+    window.addEventListener('load', revealPackages);
 </script>
 
 </body>

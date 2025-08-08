@@ -1,113 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CalvynGTPS - Promo</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CalvynGTPS — Promo</title>
+
+<!-- Fonts: elegant + modern -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  :root{
+    --bg:#000000;
+    --accent:#0f4c81;     /* biru tua */
+    --muted:#98a7b8;
+    --glass: rgba(255,255,255,0.03);
+  }
 
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: #000;
-        color: white;
-        text-align: center;
-        overflow-x: hidden;
-    }
+  /* RESET */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:Poppins,system-ui,Segoe UI,Arial; -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  a{color:inherit;text-decoration:none}
 
-    header {
-        padding: 40px 20px;
-        animation: fadeIn 1.2s ease-in-out;
-    }
+  /* LAYOUT */
+  .site{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;}
+  header{position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);z-index:60;border-bottom:1px solid rgba(255,255,255,0.02)}
 
-    h1 {
-        font-size: 3rem;
-        font-weight: 600;
-        text-shadow: 0 0 15px rgba(0, 150, 255, 0.8);
-    }
+  /* BRAND */
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .logo {
+    width:44px;height:44px;border-radius:10px;background:linear-gradient(180deg,#081a2b,#071422);display:grid;place-items:center;
+    color:var(--accent);font-family:'Playfair Display',serif;font-weight:600;font-size:18px;
+    box-shadow:0 6px 24px rgba(15,76,129,0.08);
+  }
+  .brand .title{font-family:'Playfair Display',serif;font-size:18px;color:#fff}
 
-    p {
-        font-size: 1.2rem;
-        color: #ccc;
-        max-width: 700px;
-        margin: auto;
-        line-height: 1.6;
-    }
+  /* MENU BUTTON top */
+  .menu-wrap{display:flex;align-items:center;gap:10px}
+  .menu-btn{
+    background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px 12px;border-radius:10px;color:#fff;cursor:pointer;font-weight:600;
+    transition:transform .12s ease, background .12s;
+  }
+  .menu-btn:hover{transform:translateY(-3px);background:rgba(255,255,255,0.02)}
+  .join-btn{
+    background:linear-gradient(180deg,var(--accent), #0b3b64); padding:10px 14px;border-radius:10px;border:none;color:#fff;font-weight:700;
+    box-shadow:0 12px 30px rgba(15,76,129,0.12);cursor:pointer;
+  }
+  .join-btn:hover{transform:translateY(-3px)}
 
-    nav {
-        margin-top: 30px;
-        animation: slideDown 1s ease;
-    }
+  /* TOP SLIDE MENU (from top) */
+  .top-menu {
+    position:fixed;left:0;right:0;top:-100%;height:auto;padding:18px 30px;background:linear-gradient(180deg,#060606,#05070a);
+    box-shadow:0 12px 40px rgba(0,0,0,0.6);transition:top .36s cubic-bezier(.2,.9,.2,1);z-index:55;border-bottom:1px solid rgba(255,255,255,0.02);
+    display:flex;justify-content:center;
+  }
+  .top-menu.show{top:72px} /* slides down under header */
+  .top-menu .links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .top-menu a{
+    display:inline-block;padding:10px 18px;border-radius:10px;background:rgba(255,255,255,0.02);color:#cfe8ff;border:1px solid rgba(15,76,129,0.12);
+    transition:transform .12s, background .12s;
+  }
+  .top-menu a:hover{transform:translateY(-4px);background:linear-gradient(90deg, rgba(15,76,129,0.18), rgba(15,76,129,0.1))}
 
-    nav a {
-        display: inline-block;
-        margin: 10px;
-        padding: 12px 25px;
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-        background: linear-gradient(45deg, #007bff, #00d4ff);
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(0, 200, 255, 0.8);
-        transition: all 0.3s ease;
-    }
+  /* HERO */
+  main{width:100%;max-width:980px;margin:120px auto 60px; padding:0 20px;}
+  .hero{display:flex;flex-direction:column;align-items:center;gap:18px}
+  .photo{
+    width:170px;height:170px;border-radius:50%;overflow:hidden;border:4px solid rgba(15,76,129,0.9);
+    box-shadow:0 10px 40px rgba(15,76,129,0.14);display:block;object-fit:cover;
+    transform:translateY(6px);opacity:0;transition:all .7s cubic-bezier(.2,.9,.2,1);
+  }
+  .hero h1{
+    font-family:'Playfair Display',serif;font-size:36px;margin:0;color: #dbefff;letter-spacing:0.2px;opacity:0;transform:translateY(18px);
+    transition:all .7s .12s cubic-bezier(.2,.9,.2,1);
+    text-shadow:0 6px 28px rgba(15,76,129,0.08);
+  }
+  .hero p{
+    max-width:760px;color:var(--muted);font-size:16px;line-height:1.7;margin:0;opacity:0;transform:translateY(18px);
+    transition:all .7s .22s cubic-bezier(.2,.9,.2,1)
+  }
 
-    nav a:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 0 25px rgba(0, 200, 255, 1);
-    }
+  /* FEATURES row */
+  .features{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .feature{
+    padding:12px 16px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.02);color:#cfe8ff;font-weight:600;font-size:14px;
+  }
 
-    .cta {
-        margin-top: 40px;
-    }
-
-    .cta a {
-        padding: 14px 35px;
-        background: linear-gradient(45deg, #00c3ff, #0062ff);
-        color: white;
-        border-radius: 8px;
-        font-size: 1.1rem;
-        text-decoration: none;
-        font-weight: 600;
-        box-shadow: 0 0 20px rgba(0, 150, 255, 0.9);
-        transition: 0.3s;
-    }
-
-    .cta a:hover {
-        box-shadow: 0 0 35px rgba(0, 200, 255, 1);
-        transform: translateY(-4px);
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+  /* responsive */
+  @media (max-width:640px){
+    .hero h1{font-size:26px}
+    .photo{width:130px;height:130px}
+    header{padding:12px}
+  }
 </style>
 </head>
 <body>
+  <div class="site">
 
-<header>
-    <h1>CalvynGTPS</h1>
-    <p>Tempat terbaik untuk bermain, berkreasi, dan mendapatkan pengalaman seru di dunia Growtopia Private Server.  
-    Yuk gabung dan rasakan keseruannya sekarang!</p>
-</header>
+    <!-- header -->
+    <header>
+      <div class="brand">
+        <div class="logo">C</div>
+        <div class="title">CalvynGTPS</div>
+      </div>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="promote.html">Promote</a>
-    <a href="contact.html">Contact</a>
-    <a href="gtpstools.html">GTPS Tools</a>
-</nav>
+      <div class="menu-wrap">
+        <button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="topMenu">☰ Menu</button>
+        <a class="join-btn" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">📢 Join Channel</a>
+      </div>
+    </header>
 
-<div class="cta">
-    <a href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">📢 Join WhatsApp Channel</a>
-</div>
+    <!-- top sliding menu (hidden) -->
+    <nav id="topMenu" class="top-menu" aria-hidden="true">
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="promote.html">Promote</a>
+        <a href="contact.html">Contact</a>
+        <a href="gtpstools.html">GTPS Tools</a>
+      </div>
+    </nav>
 
+    <!-- main hero -->
+    <main>
+      <section class="hero" role="main" aria-labelledby="heroTitle">
+        <!-- PHOTO: ganti src kalo perlu -->
+        <img class="photo" id="profilePhoto" src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png?ex=68971176&is=6895bff6&hm=7d64188bfd82f3759ab8628ef0b799f45bde02473ce46925197e3424b0307277&" alt="Foto Calvyn">
+
+        <h1 id="heroTitle">CalvynGTPS — Jasa Promote Profesional</h1>
+
+        <p>Promote cepat & aman untuk server GTPS kamu. Paket fleksibel mulai dari Rp 3.000 — prioritas, skip, atau paket khusus sesuai kebutuhan. Order mudah lewat WhatsApp channel.</p>
+
+        <div class="features" aria-hidden="false">
+          <div class="feature">Harga terjangkau</div>
+          <div class="feature">Proses aman</div>
+          <div class="feature">Prioritas cepat</div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+<script>
+  // menu slide from TOP
+  const menuBtn = document.getElementById('menuToggle');
+  const topMenu = document.getElementById('topMenu');
+
+  menuBtn.addEventListener('click', ()=> {
+    const open = topMenu.classList.toggle('show');
+    topMenu.setAttribute('aria-hidden', String(!open));
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  // enter/fade-in effect for hero elements
+  window.addEventListener('load', ()=>{
+    const photo = document.getElementById('profilePhoto');
+    const title = document.getElementById('heroTitle');
+    const p = document.querySelector('.hero p');
+
+    // staggered reveal
+    setTimeout(()=> photo.style.opacity = 1, 120);
+    setTimeout(()=> photo.style.transform = 'translateY(0)', 120);
+    setTimeout(()=> title.style.opacity = 1, 260);
+    setTimeout(()=> title.style.transform = 'translateY(0)', 260);
+    setTimeout(()=> p.style.opacity = 1, 400);
+    setTimeout(()=> p.style.transform = 'translateY(0)', 400);
+  });
+</script>
 </body>
 </html>

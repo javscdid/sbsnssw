@@ -1,193 +1,117 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Calvyn GTPS</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Montserrat', sans-serif;
-    }
-    body {
-        background: linear-gradient(135deg, #0d0d0d, #1a0000 40%, #4d0000 80%);
-        color: white;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.85);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 25px;
-        z-index: 1000;
-        backdrop-filter: blur(6px);
-        box-shadow: 0 2px 12px rgba(255, 0, 0, 0.25);
-    }
-    .logo {
-        font-size: 1.6rem;
-        font-weight: 900;
-        color: #ff3333;
-        letter-spacing: 1px;
-    }
-    nav {
-        display: none;
-        flex-direction: column;
-        background: rgba(10, 0, 0, 0.97);
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
-        animation: fadeIn 0.3s ease forwards;
-    }
-    nav a {
-        color: white;
-        text-decoration: none;
-        padding: 10px 14px;
-        margin: 6px 0;
-        background: linear-gradient(90deg, #ff1a1a, #b30000);
-        border-radius: 6px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-    nav a:hover {
-        background: linear-gradient(90deg, #ff4d4d, #cc0000);
-        transform: translateX(4px);
-    }
-    .menu-btn {
-        background: linear-gradient(90deg, #ff1a1a, #b30000);
-        border: none;
-        padding: 10px 15px;
-        color: white;
-        font-size: 1rem;
-        font-weight: bold;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
-    .menu-btn:hover {
-        background: linear-gradient(90deg, #ff4d4d, #cc0000);
-    }
-    .hero {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 0 20px;
-    }
-    .hero h1 {
-        font-size: 2.3rem;
-        color: #ff4d4d;
-        font-weight: 900;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: 1s;
-    }
-    .hero p {
-        font-size: 1.05rem;
-        font-weight: 300;
-        margin-top: 12px;
-        max-width: 650px;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: 1s 0.3s;
-        line-height: 1.6;
-    }
-    .extra-text {
-        margin-top: 20px;
-        font-size: 0.95rem;
-        font-weight: 300;
-        color: #ffcccc;
-        max-width: 600px;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: 1s 0.6s;
-    }
-    .show {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-    .join-btn {
-        display: inline-block;
-        background: linear-gradient(90deg, #ff1a1a, #b30000);
-        padding: 12px 20px;
-        margin-top: 25px;
-        border-radius: 6px;
-        font-size: 1rem;
-        font-weight: bold;
-        color: white;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-    .join-btn:hover {
-        background: linear-gradient(90deg, #ff4d4d, #cc0000);
-        transform: scale(1.05);
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.95); }
-        to { opacity: 1; transform: scale(1); }
-    }
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
+  body {
+    background: linear-gradient(135deg, #00101e, #002b4f);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    position: fixed; top:0; width:100%;
+    padding:15px 20px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    display:flex; justify-content:space-between; align-items:center;
+    z-index:1000;
+  }
+  .logo-nav { font-weight:900; font-size:1.4rem; color:#66ccff; }
+  .menu-btn {
+    background: #0099dd; border:none;
+    padding:10px 14px; border-radius:6px;
+    color:white; font-weight:600; cursor:pointer;
+    transition:background .3s, transform .2s;
+  }
+  .menu-btn:hover { background:#00b2ee; transform:translateY(-2px); }
+  nav {
+    position:absolute; top:60px; right:20px;
+    background: rgba(0,0,0,0.8);
+    border-radius:8px;
+    overflow:hidden;
+    display:none;
+  }
+  nav a {
+    display:block; color:white; padding:12px 20px;
+    text-decoration:none; transition:background .3s;
+  }
+  nav a:hover { background:rgba(102,204,255,0.2); }
+
+  .hero {
+    margin-top:80px; text-align:center;
+    display:flex; flex-direction:column;
+    align-items:center; padding:20px;
+  }
+  .hero .user-img {
+    width:140px; height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #66ccff;
+    box-shadow:0 0 20px rgba(102,204,255,0.5);
+  }
+  .hero h1 {
+    margin-top:20px;
+    font-size:2.2rem;
+    font-weight:900;
+    color:#66ccff;
+    opacity:0; transform:translateY(30px);
+    transition:opacity .8s, transform .8s;
+  }
+  .hero p {
+    margin-top:14px; max-width:600px;
+    font-weight:300;
+    opacity:0; transform:translateY(30px);
+    transition:opacity .8s .3s, transform .8s .3s;
+  }
+  .hero .join-btn {
+    margin-top:24px; padding:12px 22px;
+    background:#0099dd; color:white;
+    border:none; border-radius:6px;
+    font-weight:700; cursor:pointer;
+    transition:background .3s, transform .2s;
+  }
+  .hero .join-btn:hover { background:#00b2ee; transform:scale(1.03); }
+  .show { opacity:1 !important; transform:translateY(0) !important; }
+
 </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">Calvyn GTPS</div>
-    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
-    <nav id="menu">
-        <a href="calvyn.html">Home</a>
-        <a href="promote.html">Promote</a>
-        <a href="gtpstools.html">GTPS Tools</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+  <div class="logo-nav">Calvyn GTPS</div>
+  <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+  <nav id="menu">
+    <a href="calvyn.html">Home</a>
+    <a href="promote.html">Promote</a>
+    <a href="gtpstools.html">GTPS Tools</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
 <section class="hero">
-    <div>
-        <h1>Selamat Datang di Calvyn GTPS</h1>
-        <p>Bergabunglah dengan komunitas Growtopia Private Server yang penuh kreativitas, event seru, dan layanan cepat. Semua yang kamu butuhkan ada di sini.</p>
-        <div class="extra-text">
-            Dapatkan pengalaman bermain yang berbeda, mulai dari fitur unik, sistem promote yang cepat, hingga event mingguan yang selalu dinanti para pemain.
-        </div>
-        <a class="join-btn" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D">📢 Join Calvyn GTPS Group</a>
-    </div>
+  <img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png" alt="Foto Calvyn" class="user-img">
+  <h1>Selamat Datang di CalvynGTPS</h1>
+  <p>Tempat paling keren buat server Growtopia Private. Promo cepat dan profesional, komunitas ramah, pengalaman gaming jadi luar biasa.</p>
+  <button class="join-btn" onclick="window.open('https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D','_blank')">Join CalvynGTPS Group</button>
 </section>
 
 <script>
-    function toggleMenu() {
-        const menu = document.getElementById('menu');
-        if (menu.style.display === 'flex') {
-            menu.style.display = 'none';
-        } else {
-            menu.style.display = 'flex';
-        }
-    }
-
-    function revealOnScroll() {
-        document.querySelectorAll('.hero h1, .hero p, .extra-text').forEach(el => {
-            const triggerBottom = window.innerHeight * 0.85;
-            if (el.getBoundingClientRect().top < triggerBottom) {
-                el.classList.add('show');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
+  function toggleMenu(){
+    const nav = document.getElementById('menu');
+    nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+  }
+  window.addEventListener('load', () => {
+    document.querySelector('.hero h1').classList.add('show');
+    document.querySelector('.hero p').classList.add('show');
+  });
 </script>
 
 </body>

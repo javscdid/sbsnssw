@@ -105,7 +105,7 @@
         justify-content: space-around;
         flex-wrap: wrap;
         gap: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
     }
 
     .tool {
@@ -121,7 +121,7 @@
         align-items: center;
         gap: 15px;
         box-shadow: 0 0 10px rgba(201, 176, 55, 0.7);
-        transition: background 0.3s;
+        transition: background 0.3s, color 0.3s;
     }
 
     .tool:hover {
@@ -133,11 +133,14 @@
     .tool a {
         color: inherit;
         text-decoration: none;
-        padding: 10px 15px;
+        padding: 12px 20px;
         background: black;
-        border-radius: 8px;
+        border-radius: 10px;
         font-weight: 700;
-        transition: background 0.3s;
+        transition: background 0.3s, color 0.3s;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
     }
 
     .tool:hover a {
@@ -151,12 +154,23 @@
         margin-bottom: 40px;
     }
 
-    .video-section iframe {
-        width: 100%;
-        height: 400px;
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
         border-radius: 15px;
         border: 3px solid #c9b037;
         box-shadow: 0 0 20px rgba(201, 176, 55, 0.7);
+        margin-bottom: 25px;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
     }
 
     .tutorial-pc-link {
@@ -165,7 +179,7 @@
         font-size: 1.2rem;
         margin-top: 10px;
         display: inline-block;
-        padding: 10px 20px;
+        padding: 12px 25px;
         border: 2px solid #c9b037;
         border-radius: 15px;
         text-decoration: none;
@@ -177,7 +191,6 @@
         color: black;
         cursor: pointer;
     }
-
 </style>
 </head>
 <body>
@@ -214,16 +227,26 @@
 
 <div class="video-section">
     <h2 style="color:#c9b037; margin-bottom: 15px;">Tutorial Login Pakai PowerTunnel (Android)</h2>
-    <iframe 
-        src="https://www.youtube.com/embed/ebKgy8lp6Zw?si=Xqpoixw9-zqaK4e7" 
-        title="Tutorial Login PowerTunnel" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
-        loading="lazy"
-    ></iframe>
-    <a href="https://youtu.be/0MwLgCPiOew?si=e_MqrgZ39O7a2WyZ" target="_blank" rel="noopener noreferrer" class="tutorial-pc-link">
-        Tutorial Login PC/Laptop
-    </a>
+    <div class="video-wrapper">
+        <iframe 
+            src="https://www.youtube.com/embed/ebKgy8lp6Zw?si=Xqpoixw9-zqaK4e7" 
+            title="Tutorial Login PowerTunnel" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            loading="lazy"
+        ></iframe>
+    </div>
+
+    <h2 style="color:#c9b037; margin-bottom: 15px;">Tutorial Login PC / Laptop</h2>
+    <div class="video-wrapper">
+        <iframe 
+            src="https://www.youtube.com/embed/0MwLgCPiOew?si=e_MqrgZ39O7a2WyZ" 
+            title="Tutorial Login PC/Laptop" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            loading="lazy"
+        ></iframe>
+    </div>
 </div>
 
 <script>

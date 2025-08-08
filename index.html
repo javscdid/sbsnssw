@@ -16,7 +16,7 @@
 
     body {
         background: #000; /* full hitam */
-        color: #d4af37; /* gold */
+        color: white; /* default putih */
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -33,13 +33,13 @@
         align-items: center;
         padding: 15px 25px;
         z-index: 1000;
-        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.5);
+        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
     }
 
     .logo {
         font-size: 1.5rem;
         font-weight: 800;
-        color: #d4af37; /* gold */
+        color: #f9d976; /* kuning gold muda */
     }
 
     nav {
@@ -51,16 +51,16 @@
         right: 20px;
         padding: 15px;
         border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
         transition: 0.3s ease-in-out;
     }
 
     nav a {
-        color: #d4af37;
+        color: white;
         text-decoration: none;
         padding: 10px;
         margin: 5px 0;
-        background: #332a00;
+        background: #222;
         border-radius: 5px;
         font-weight: 600;
         transition: 0.3s;
@@ -68,14 +68,14 @@
     }
 
     nav a:hover {
-        background: #665500;
+        background: #555;
     }
 
     .menu-btn {
-        background: #332a00;
+        background: #222;
         border: none;
         padding: 10px 15px;
-        color: #d4af37;
+        color: white;
         font-size: 1rem;
         font-weight: bold;
         border-radius: 5px;
@@ -97,14 +97,14 @@
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        border: 3px solid #d4af37;
-        box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        border: 3px solid #f9d976;
+        box-shadow: 0 0 15px rgba(249, 217, 118, 0.5);
         margin-bottom: 20px;
     }
 
     .hero h1 {
         font-size: 2.2rem;
-        color: #d4af37;
+        color: #f9d976; /* kuning gold muda */
         opacity: 0;
         transform: translateY(50px);
         transition: 1s;
@@ -117,6 +117,7 @@
         opacity: 0;
         transform: translateY(50px);
         transition: 1s 0.3s;
+        color: white; /* putih */
     }
 
     .extra-text {
@@ -126,6 +127,7 @@
         opacity: 0;
         transform: translateY(50px);
         transition: 1s 0.6s;
+        color: white; /* putih */
     }
 
     .show {
@@ -135,19 +137,22 @@
 
     .join-btn {
         display: inline-block;
-        background: #332a00;
+        background: #222;
         padding: 12px 20px;
         margin-top: 25px;
         border-radius: 6px;
         font-size: 1.1rem;
         font-weight: bold;
-        color: #d4af37;
+        color: #f9d976; /* kuning gold muda */
         text-decoration: none;
         transition: 0.3s;
+        border: 2px solid #f9d976;
     }
 
     .join-btn:hover {
-        background: #665500;
+        background: #f9d976;
+        color: #222;
+        border-color: #f9d976;
     }
 </style>
 </head>

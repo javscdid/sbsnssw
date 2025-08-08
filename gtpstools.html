@@ -90,12 +90,28 @@
         border: 3px solid #c9b037;
         margin-bottom: 30px;
         box-shadow: 0 0 15px rgba(201, 176, 55, 0.6);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s ease;
+    }
+
+    img.logo-img.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     h1 {
         font-size: 2.5rem;
         color: #c9b037;
         margin-bottom: 30px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s ease;
+    }
+
+    h1.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .tools-list {
@@ -122,6 +138,14 @@
         gap: 15px;
         box-shadow: 0 0 10px rgba(201, 176, 55, 0.7);
         transition: background 0.3s, color 0.3s;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .tool.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .tool:hover {
@@ -152,11 +176,19 @@
         max-width: 700px;
         width: 100%;
         margin-bottom: 40px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .video-section.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .video-wrapper {
         position: relative;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        padding-bottom: 56.25%; /* 16:9 */
         height: 0;
         overflow: hidden;
         border-radius: 15px;
@@ -173,24 +205,6 @@
         border: none;
     }
 
-    .tutorial-pc-link {
-        font-weight: 700;
-        color: #c9b037;
-        font-size: 1.2rem;
-        margin-top: 10px;
-        display: inline-block;
-        padding: 12px 25px;
-        border: 2px solid #c9b037;
-        border-radius: 15px;
-        text-decoration: none;
-        transition: background 0.3s, color 0.3s;
-    }
-
-    .tutorial-pc-link:hover {
-        background: #c9b037;
-        color: black;
-        cursor: pointer;
-    }
 </style>
 </head>
 <body>
@@ -210,9 +224,9 @@
 
 " alt="Logo Calvyn GTPS" class="logo-img" />
 
-<h1>GTPS Tools</h1>
+<h1 id="main-title">GTPS Tools</h1>
 
-<div class="tools-list">
+<div class="tools-list" id="tools-list">
     <div class="tool">
         <div>PowerTunnel</div>
         <a href="https://m.apkpure.com/powertunnel/io.github.krlvm.powertunnel.android/download" target="_blank" rel="noopener noreferrer">Download</a>
@@ -227,7 +241,7 @@
     </div>
 </div>
 
-<div class="video-section">
+<div class="video-section" id="video-section-1">
     <h2 style="color:#c9b037; margin-bottom: 15px;">Tutorial Login Pakai PowerTunnel (Android)</h2>
     <div class="video-wrapper">
         <iframe 
@@ -238,7 +252,9 @@
             loading="lazy"
         ></iframe>
     </div>
+</div>
 
+<div class="video-section" id="video-section-2">
     <h2 style="color:#c9b037; margin-bottom: 15px;">Tutorial Login PC / Laptop</h2>
     <div class="video-wrapper">
         <iframe 
@@ -256,6 +272,29 @@
         const menu = document.getElementById('menu');
         menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
     }
+
+    window.addEventListener('load', () => {
+        // Show logo and title
+        document.querySelector('.logo-img').classList.add('show');
+        document.getElementById('main-title').classList.add('show');
+
+        // Show tools one by one
+        const tools = document.querySelectorAll('.tool');
+        tools.forEach((tool, i) => {
+            setTimeout(() => {
+                tool.classList.add('show');
+            }, 500 + i * 300);
+        });
+
+        // Show video sections
+        setTimeout(() => {
+            document.getElementById('video-section-1').classList.add('show');
+        }, 1500 + tools.length * 300);
+
+        setTimeout(() => {
+            document.getElementById('video-section-2').classList.add('show');
+        }, 1800 + tools.length * 300);
+    });
 </script>
 
 </body>

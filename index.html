@@ -1,170 +1,199 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>CalvynGTPS — Promo</title>
-
-<!-- Fonts: elegant + modern -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calvyn GTPS</title>
 <style>
-  :root{
-    --bg:#000000;
-    --accent:#0f4c81;     /* biru tua */
-    --muted:#98a7b8;
-    --glass: rgba(255,255,255,0.03);
-  }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
-  /* RESET */
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:Poppins,system-ui,Segoe UI,Arial; -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-  a{color:inherit;text-decoration:none}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-  /* LAYOUT */
-  .site{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;}
-  header{position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);z-index:60;border-bottom:1px solid rgba(255,255,255,0.02)}
+    body {
+        background: linear-gradient(135deg, #000000, #001f3f);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 
-  /* BRAND */
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand .logo {
-    width:44px;height:44px;border-radius:10px;background:linear-gradient(180deg,#081a2b,#071422);display:grid;place-items:center;
-    color:var(--accent);font-family:'Playfair Display',serif;font-weight:600;font-size:18px;
-    box-shadow:0 6px 24px rgba(15,76,129,0.08);
-  }
-  .brand .title{font-family:'Playfair Display',serif;font-size:18px;color:#fff}
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 119, 255, 0.3);
+    }
 
-  /* MENU BUTTON top */
-  .menu-wrap{display:flex;align-items:center;gap:10px}
-  .menu-btn{
-    background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px 12px;border-radius:10px;color:#fff;cursor:pointer;font-weight:600;
-    transition:transform .12s ease, background .12s;
-  }
-  .menu-btn:hover{transform:translateY(-3px);background:rgba(255,255,255,0.02)}
-  .join-btn{
-    background:linear-gradient(180deg,var(--accent), #0b3b64); padding:10px 14px;border-radius:10px;border:none;color:#fff;font-weight:700;
-    box-shadow:0 12px 30px rgba(15,76,129,0.12);cursor:pointer;
-  }
-  .join-btn:hover{transform:translateY(-3px)}
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #00aaff;
+    }
 
-  /* TOP SLIDE MENU (from top) */
-  .top-menu {
-    position:fixed;left:0;right:0;top:-100%;height:auto;padding:18px 30px;background:linear-gradient(180deg,#060606,#05070a);
-    box-shadow:0 12px 40px rgba(0,0,0,0.6);transition:top .36s cubic-bezier(.2,.9,.2,1);z-index:55;border-bottom:1px solid rgba(255,255,255,0.02);
-    display:flex;justify-content:center;
-  }
-  .top-menu.show{top:72px} /* slides down under header */
-  .top-menu .links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-  .top-menu a{
-    display:inline-block;padding:10px 18px;border-radius:10px;background:rgba(255,255,255,0.02);color:#cfe8ff;border:1px solid rgba(15,76,129,0.12);
-    transition:transform .12s, background .12s;
-  }
-  .top-menu a:hover{transform:translateY(-4px);background:linear-gradient(90deg, rgba(15,76,129,0.18), rgba(15,76,129,0.1))}
+    nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 119, 255, 0.5);
+        transition: 0.3s ease-in-out;
+    }
 
-  /* HERO */
-  main{width:100%;max-width:980px;margin:120px auto 60px; padding:0 20px;}
-  .hero{display:flex;flex-direction:column;align-items:center;gap:18px}
-  .photo{
-    width:170px;height:170px;border-radius:50%;overflow:hidden;border:4px solid rgba(15,76,129,0.9);
-    box-shadow:0 10px 40px rgba(15,76,129,0.14);display:block;object-fit:cover;
-    transform:translateY(6px);opacity:0;transition:all .7s cubic-bezier(.2,.9,.2,1);
-  }
-  .hero h1{
-    font-family:'Playfair Display',serif;font-size:36px;margin:0;color: #dbefff;letter-spacing:0.2px;opacity:0;transform:translateY(18px);
-    transition:all .7s .12s cubic-bezier(.2,.9,.2,1);
-    text-shadow:0 6px 28px rgba(15,76,129,0.08);
-  }
-  .hero p{
-    max-width:760px;color:var(--muted);font-size:16px;line-height:1.7;margin:0;opacity:0;transform:translateY(18px);
-    transition:all .7s .22s cubic-bezier(.2,.9,.2,1)
-  }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5px 0;
+        background: #004d80;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: 0.3s;
+        display: block;
+    }
 
-  /* FEATURES row */
-  .features{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-  .feature{
-    padding:12px 16px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.02);color:#cfe8ff;font-weight:600;font-size:14px;
-  }
+    nav a:hover {
+        background: #0077cc;
+    }
 
-  /* responsive */
-  @media (max-width:640px){
-    .hero h1{font-size:26px}
-    .photo{width:130px;height:130px}
-    header{padding:12px}
-  }
+    .menu-btn {
+        background: #004d80;
+        border: none;
+        padding: 10px 15px;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .hero {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+        flex-direction: column;
+        margin-top: 80px;
+    }
+
+    .hero img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 3px solid #00aaff;
+        box-shadow: 0 0 15px rgba(0,170,255,0.5);
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+        color: #00aaff;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        margin-top: 15px;
+        max-width: 600px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s 0.3s;
+    }
+
+    .extra-text {
+        font-size: 1rem;
+        margin-top: 15px;
+        max-width: 600px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s 0.6s;
+    }
+
+    .show {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+    .join-btn {
+        display: inline-block;
+        background: #004d80;
+        padding: 12px 20px;
+        margin-top: 25px;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .join-btn:hover {
+        background: #0077cc;
+    }
 </style>
 </head>
 <body>
-  <div class="site">
 
-    <!-- header -->
-    <header>
-      <div class="brand">
-        <div class="logo">C</div>
-        <div class="title">CalvynGTPS</div>
-      </div>
-
-      <div class="menu-wrap">
-        <button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="topMenu">☰ Menu</button>
-        <a class="join-btn" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">📢 Join Channel</a>
-      </div>
-    </header>
-
-    <!-- top sliding menu (hidden) -->
-    <nav id="topMenu" class="top-menu" aria-hidden="true">
-      <div class="links">
+<header>
+    <div class="logo">Calvyn GTPS</div>
+    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+    <nav id="menu">
         <a href="index.html">Home</a>
         <a href="promote.html">Promote</a>
-        <a href="contact.html">Contact</a>
         <a href="gtpstools.html">GTPS Tools</a>
-      </div>
+        <a href="contact.html">Contact</a>
     </nav>
+</header>
 
-    <!-- main hero -->
-    <main>
-      <section class="hero" role="main" aria-labelledby="heroTitle">
-        <!-- PHOTO: ganti src kalo perlu -->
-        <img class="photo" id="profilePhoto" src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png?ex=68971176&is=6895bff6&hm=7d64188bfd82f3759ab8628ef0b799f45bde02473ce46925197e3424b0307277&" alt="Foto Calvyn">
-
-        <h1 id="heroTitle">CalvynGTPS — Jasa Promote Profesional</h1>
-
-        <p>Promote cepat & aman untuk server GTPS kamu. Paket fleksibel mulai dari Rp 3.000 — prioritas, skip, atau paket khusus sesuai kebutuhan. Order mudah lewat WhatsApp channel.</p>
-
-        <div class="features" aria-hidden="false">
-          <div class="feature">Harga terjangkau</div>
-          <div class="feature">Proses aman</div>
-          <div class="feature">Prioritas cepat</div>
-        </div>
-      </section>
-    </main>
-
-  </div>
+<section class="hero">
+    <img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png" alt="Logo Calvyn GTPS">
+    <h1>Selamat Datang di Calvyn GTPS</h1>
+    <p>Tempat terbaik untuk mempromosikan server Growtopia Private Anda dengan cepat, aman, dan terpercaya.</p>
+    <p class="extra-text">Kami menyediakan layanan promote yang efektif, komunitas yang ramah, dan dukungan penuh untuk pertumbuhan server Anda.</p>
+    <a class="join-btn" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D">📢 Join Calvyn GTPS Group</a>
+</section>
 
 <script>
-  // menu slide from TOP
-  const menuBtn = document.getElementById('menuToggle');
-  const topMenu = document.getElementById('topMenu');
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        if (menu.style.display === 'flex') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'flex';
+        }
+    }
 
-  menuBtn.addEventListener('click', ()=> {
-    const open = topMenu.classList.toggle('show');
-    topMenu.setAttribute('aria-hidden', String(!open));
-    menuBtn.setAttribute('aria-expanded', String(open));
-  });
+    function revealOnScroll() {
+        document.querySelectorAll('.hero h1, .hero p, .extra-text').forEach(el => {
+            const triggerBottom = window.innerHeight * 0.85;
+            if (el.getBoundingClientRect().top < triggerBottom) {
+                el.classList.add('show');
+            }
+        });
+    }
 
-  // enter/fade-in effect for hero elements
-  window.addEventListener('load', ()=>{
-    const photo = document.getElementById('profilePhoto');
-    const title = document.getElementById('heroTitle');
-    const p = document.querySelector('.hero p');
-
-    // staggered reveal
-    setTimeout(()=> photo.style.opacity = 1, 120);
-    setTimeout(()=> photo.style.transform = 'translateY(0)', 120);
-    setTimeout(()=> title.style.opacity = 1, 260);
-    setTimeout(()=> title.style.transform = 'translateY(0)', 260);
-    setTimeout(()=> p.style.opacity = 1, 400);
-    setTimeout(()=> p.style.transform = 'translateY(0)', 400);
-  });
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
 </script>
+
 </body>
 </html>

@@ -96,6 +96,9 @@
         font-size: 2.5rem;
         color: #c9b037;
         margin-bottom: 30px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s ease;
     }
 
     .contact-list {
@@ -122,6 +125,9 @@
         justify-content: center;
         transition: background 0.3s, color 0.3s;
         box-shadow: 0 0 10px rgba(201, 176, 55, 0.7);
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s ease;
     }
 
     .contact-item:hover {
@@ -149,6 +155,12 @@
         background: black;
         color: #c9b037;
     }
+
+    /* CLASS UNTUK EFEK ENTER */
+    .show {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
 </style>
 </head>
 <body>
@@ -166,9 +178,9 @@
 
 <img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png?ex=68971176&is=6895bff6&hm=7d64188bfd82f3759ab8628ef0b799f45bde02473ce46925197e3424b0307277&" alt="Logo Calvyn GTPS" class="logo-img" />
 
-<h1>Kontak Calvyn GTPS</h1>
+<h1 id="title">Kontak Calvyn GTPS</h1>
 
-<div class="contact-list">
+<div class="contact-list" id="contact-list">
     <a href="https://wa.me/639097571277" target="_blank" class="contact-item" title="WhatsApp CalvynGTPS">
         <div class="contact-icon">📱</div>
         WhatsApp Calvyn GTPS
@@ -184,7 +196,7 @@
         CalvynGTPS Discord Group
     </a>
 
-    <a href="https://youtube.com/@calvyn9668?si=LlRaVctqwYwmswMd" target="_blank" class="contact-item" title="Channel YouTube Calvyn GTPS">
+    <a href="https://youtube.com/@calvyn9668?si=LlRaVctqwYwmswMd" target="_blank" class="contact-item" title="CalvynGTPS Youtube Channel">
         <div class="contact-icon">⏩</div>
         CalvynGTPS Youtube Channel
     </a>
@@ -195,6 +207,17 @@
         const menu = document.getElementById('menu');
         menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
     }
+
+    // Efek enter untuk judul dan tombol kontak
+    window.addEventListener('load', () => {
+        const title = document.getElementById('title');
+        const contacts = document.querySelectorAll('.contact-item');
+
+        setTimeout(() => title.classList.add('show'), 300);
+        contacts.forEach((contact, i) => {
+            setTimeout(() => contact.classList.add('show'), 600 + i * 300);
+        });
+    });
 </script>
 
 </body>

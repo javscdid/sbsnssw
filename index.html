@@ -1,81 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calvyn GTPS - Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>CalvynGTPS</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
-* {margin:0;padding:0;box-sizing:border-box;}
 body {
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #001a1a, #000);
-  color: #eaeaea;
-  overflow-x: hidden;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f0f;
+    color: #fff;
 }
-nav {
-  display:flex;justify-content:center;gap:30px;
-  padding:15px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(8px);
-  position:sticky;top:0;z-index:100;
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(90deg, #3d2b57, #1a1423);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 25px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
-nav a {
-  color:#ccc;text-decoration:none;font-weight:500;transition:0.3s;
+.navbar .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4em;
+    font-weight: bold;
 }
-nav a:hover {color:#00f0ff;}
-header {
-  text-align:center;padding:50px 20px;
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
-header h1 {
-  font-size:2.5em;color:#00f0ff;text-shadow:0 0 15px #00f0ff;
+.navbar ul li {
+    margin-left: 20px;
 }
-header p {
-  max-width:600px;margin:auto;color:#ccc;margin-top:10px;
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
 }
-.profile {
-  text-align:center;margin-top:40px;
+.navbar ul li a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
 }
-.profile img {
-  width:160px;height:160px;border-radius:50%;
-  box-shadow:0 0 30px rgba(0,255,255,0.5);
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: url('https://i.ibb.co/hCRDrBM/bg.jpg') center/cover no-repeat;
 }
-.profile-buttons a {
-  margin:10px;display:inline-block;padding:10px 25px;
-  background:linear-gradient(90deg,#00f0ff,#0077ff);
-  border-radius:25px;text-decoration:none;color:white;
-  transition:transform 0.3s;
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5em;
+    margin-bottom: 15px;
 }
-.profile-buttons a:hover {transform:scale(1.05);}
-footer {
-  text-align:center;padding:20px;color:#888;margin-top:50px;
-  border-top:1px solid rgba(255,255,255,0.1);
+.hero p {
+    font-size: 1.1em;
+}
+
+/* Footer */
+.footer {
+    background: #1a1423;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9em;
+}
+.join-btn {
+    display: inline-block;
+    background: #25D366;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.join-btn:hover {
+    background: #20b958;
+}
+
+/* Animations */
+[data-aos] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition-property: transform, opacity;
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="calvyn.html">Home</a>
-  <a href="promote.html">Promote</a>
-  <a href="gtpstools.html">GTPS Tools</a>
-  <a href="contact.html">Contact</a>
-</nav>
-
-<header>
-  <h1>Selamat Datang di Calvyn GTPS</h1>
-  <p>Website resmi untuk kamu yang ingin tahu tentang Calvyn GTPS, layanan promote, tools GTPS, dan kontak resmi.</p>
-</header>
-
-<div class="profile">
-  <img src="https://cdn.discordapp.com/attachments/1335465868221743165/1397228982956593244/20250721_204531.png" alt="Profile">
-  <div class="profile-buttons">
-    <a href="https://wa.me/639097571277">WhatsApp</a>
-    <a href="https://www.youtube.com/@calvyn9668">YouTube</a>
-  </div>
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">CalvynGTPS</div>
+    <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Fitur</a></li>
+        <li><a href="#">Download</a></li>
+        <li><a href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" class="join-btn">Join CalvynGTPS</a></li>
+    </ul>
 </div>
 
-<footer>© 2025 Calvyn GTPS. All Rights Reserved.</footer>
+<!-- Hero Section -->
+<div class="hero" data-aos="fade-up">
+    <h1>Selamat Datang di CalvynGTPS</h1>
+    <p>Bergabunglah dengan komunitas kami dan nikmati pengalaman terbaik.</p>
+</div>
+
+<!-- Konten -->
+<div style="padding: 40px; text-align: center;" data-aos="fade-up">
+    <h2>Tentang Kami</h2>
+    <p>Kami menyediakan server private Growtopia dengan fitur eksklusif dan komunitas yang ramah.</p>
+</div>
+
+<!-- Footer -->
+<div class="footer" data-aos="fade-up">
+    &copy; 2025 CalvynGTPS. All Rights Reserved.
+    <br>
+    <a href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" class="join-btn">Join CalvynGTPS</a>
+</div>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1000, once: true });
+</script>
 
 </body>
 </html>

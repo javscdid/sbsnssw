@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,188 +7,178 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
     body {
+        margin: 0;
+        background: linear-gradient(180deg, #0d0d0d, #1a0000);
         font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #0d0d0d, #1a0000);
         color: white;
         overflow-x: hidden;
     }
+
     header {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%;
-        padding: 20px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
         background: rgba(0,0,0,0.7);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
+        position: fixed;
+        width: 100%;
+        top: 0;
         z-index: 1000;
     }
-    .logo {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #ff1a1a;
+
+    header img {
+        height: 50px;
     }
+
     .menu-btn {
-        background: none;
+        background: #ff1a1a;
+        padding: 10px 20px;
         border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
         color: white;
-        font-size: 1.8rem;
         cursor: pointer;
-        transition: transform 0.3s;
+        transition: 0.3s;
     }
     .menu-btn:hover {
-        transform: scale(1.1);
-        color: #ff1a1a;
+        background: #ff4d4d;
     }
+
     nav {
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 250px;
-        height: 100%;
-        background: rgba(20, 0, 0, 0.95);
-        box-shadow: -2px 0 10px rgba(255,0,0,0.4);
-        padding-top: 80px;
-        transition: right 0.4s ease-in-out;
-        z-index: 1500;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background: rgba(20,0,0,0.95);
+        transition: right 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        padding: 60px 20px;
     }
-    nav.active {
-        right: 0;
-    }
+
     nav a {
-        display: block;
-        padding: 15px 20px;
         color: white;
-        font-weight: 600;
         text-decoration: none;
-        transition: background 0.3s;
+        font-size: 18px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: 0.3s;
     }
     nav a:hover {
-        background: rgba(255,0,0,0.2);
-    }
-    section {
-        padding: 100px 20px;
-        min-height: 100vh;
-    }
-    .title {
-        font-size: 2rem;
-        font-weight: 800;
         color: #ff4d4d;
-        text-align: center;
-        margin-bottom: 20px;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.6s ease-out;
     }
-    .title.show {
-        opacity: 1;
-        transform: translateY(0);
+
+    nav.show {
+        right: 0;
     }
-    .faq-container {
+
+    .section {
+        height: 100vh;
         display: flex;
-        gap: 20px;
-        overflow-x: auto;
-        padding: 10px;
-        scroll-snap-type: x mandatory;
-    }
-    .faq-card {
-        min-width: 300px;
-        flex: 0 0 auto;
-        background: rgba(255,255,255,0.05);
-        border-radius: 12px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
         padding: 20px;
-        scroll-snap-align: start;
-        box-shadow: 0 0 15px rgba(255,0,0,0.2);
-        transition: transform 0.3s;
     }
-    .faq-card:hover {
-        transform: translateY(-5px);
+
+    h1 {
+        font-size: 50px;
+        font-weight: 800;
+        margin-bottom: 20px;
     }
+
     .join-btn {
-        display: inline-block;
-        margin-top: 30px;
-        padding: 12px 25px;
-        background: linear-gradient(45deg, #ff1a1a, #990000);
+        background: #ff1a1a;
         color: white;
-        text-decoration: none;
-        font-weight: 600;
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(255,0,0,0.4);
-        transition: transform 0.3s;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: 0.3s;
     }
     .join-btn:hover {
-        transform: scale(1.05);
+        background: #ff4d4d;
+    }
+
+    /* FAQ vertical slider */
+    .faq-container {
+        height: 80vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .faq-container::-webkit-scrollbar {
+        display: none;
+    }
+    .faq-item {
+        scroll-snap-align: start;
+        background: rgba(255,255,255,0.05);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 20px;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+    .faq-item:hover {
+        transform: scale(1.02);
     }
 </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">CalvynGTPS</div>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <img src="logo.png" alt="Logo">
+    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
 </header>
 
 <nav id="menu">
-    <a href="#">Beranda</a>
-    <a href="#">Tentang</a>
-    <a href="#">Download</a>
-    <a href="#">Kontak</a>
+    <a href="#home">Home</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">Join CalvynGTPS</a>
 </nav>
 
-<section>
-    <h1 class="title">Selamat Datang di CalvynGTPS</h1>
-    <p style="text-align:center; max-width:600px; margin:auto;">
-        Server Growtopia Private terbaik dengan fitur lengkap dan komunitas yang ramah.  
-        Nikmati pengalaman bermain yang tak terlupakan.
-    </p>
-    <div style="text-align:center;">
-        <a href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" class="join-btn">Join CalvynGTPS Group</a>
-    </div>
-</section>
+<div class="section" id="home">
+    <h1>Welcome to RooTopia</h1>
+    <p>Server GTPS dengan pengalaman terbaik dan komunitas solid.</p>
+    <a href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">
+        <button class="join-btn">Join CalvynGTPS Group</button>
+    </a>
+</div>
 
-<section>
-    <h2 class="title">FAQ</h2>
+<div class="section" id="faq">
+    <h1>FAQ</h1>
     <div class="faq-container">
-        <div class="faq-card">
-            <h3>Apa itu CalvynGTPS?</h3>
-            <p>CalvynGTPS adalah Growtopia Private Server dengan fitur eksklusif dan event seru setiap minggu.</p>
+        <div class="faq-item">
+            <h2>Bagaimana cara join server?</h2>
+            <p>Kamu bisa join lewat tutorial di website ini dan unduh file yang diperlukan.</p>
         </div>
-        <div class="faq-card">
-            <h3>Bagaimana cara join?</h3>
-            <p>Kamu bisa download file host atau aplikasi dan ikuti tutorial di menu download.</p>
+        <div class="faq-item">
+            <h2>Apakah server ini gratis?</h2>
+            <p>Ya, kamu bisa bermain gratis. Namun, ada item premium yang bisa dibeli.</p>
         </div>
-        <div class="faq-card">
-            <h3>Apakah gratis?</h3>
-            <p>Ya, bermain di CalvynGTPS sepenuhnya gratis tanpa biaya.</p>
-        </div>
-        <div class="faq-card">
-            <h3>Apakah ada event?</h3>
-            <p>Ada! Kami rutin mengadakan event harian dan mingguan dengan hadiah menarik.</p>
+        <div class="faq-item">
+            <h2>Platform apa saja yang bisa main?</h2>
+            <p>Android, iOS, dan PC bisa bermain di RooTopia.</p>
         </div>
     </div>
-</section>
+</div>
 
 <script>
-    function toggleMenu() {
-        document.getElementById('menu').classList.toggle('active');
-    }
-
-    // Animasi muncul saat scroll
-    window.addEventListener('scroll', () => {
-        document.querySelectorAll('.title').forEach(title => {
-            const rect = title.getBoundingClientRect();
-            if(rect.top < window.innerHeight - 100) {
-                title.classList.add('show');
-            }
-        });
-    });
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("show");
+}
 </script>
 
 </body>

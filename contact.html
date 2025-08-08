@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Promote - Calvyn GTPS</title>
+<title>Contact - Calvyn GTPS</title>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+        margin: 0; padding: 0; box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
     }
 
     body {
-        background: #000;
+        background: #000; /* full hitam */
         color: white;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        padding-top: 80px; /* space utk header fixed */
+        align-items: center;
+        padding-top: 120px;
+        text-align: center;
     }
 
     header {
@@ -28,19 +28,19 @@
         top: 0;
         left: 0;
         width: 100%;
-        background: rgba(0,0,0,0.9);
+        background: rgba(0, 0, 0, 0.9);
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 15px 25px;
         z-index: 1000;
-        box-shadow: 0 2px 8px rgba(255,255,255,0.2);
+        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
     }
 
     .logo {
         font-size: 1.5rem;
         font-weight: 800;
-        color: #f9d976;
+        color: #f9d976; /* kuning gold muda */
     }
 
     nav {
@@ -83,58 +83,53 @@
         cursor: pointer;
     }
 
-    main {
-        flex: 1;
-        max-width: 700px;
-        margin: 0 auto;
-        padding: 20px;
+    h1 {
+        font-size: 2.5rem;
+        color: #c9b037;
+        margin-bottom: 30px;
     }
 
-    h2 {
-        color: #f9d976;
-        font-weight: 800;
-        margin-bottom: 20px;
+    .contact-list {
+        max-width: 600px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .contact-item {
+        background: #111;
+        border: 2px solid #c9b037;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: background 0.3s;
+    }
+
+    .contact-item:hover {
+        background: #222;
+        cursor: pointer;
+    }
+
+    .contact-icon {
+        font-size: 2.5rem;
+        color: #c9b037;
+        flex-shrink: 0;
+        width: 40px;
         text-align: center;
     }
 
-    .package {
-        background: #111;
-        border: 2px solid #f9d976;
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 0 10px rgba(249, 217, 118, 0.5);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .package-name {
-        font-weight: 700;
-        font-size: 1.3rem;
-        color: #f9d976;
-    }
-
-    .package-price {
+    .contact-link {
+        color: white;
         font-weight: 600;
         font-size: 1.2rem;
-        color: white;
+        text-decoration: none;
+        flex-grow: 1;
     }
 
-    .buy-btn {
-        background: #f9d976;
-        color: #111;
-        padding: 10px 20px;
-        border: none;
-        font-weight: 700;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.3s;
-        margin-left: 15px;
-    }
-
-    .buy-btn:hover {
-        background: #e6c94f;
+    .contact-link:hover {
+        text-decoration: underline;
     }
 </style>
 </head>
@@ -151,58 +146,34 @@
     </nav>
 </header>
 
-<main>
-    <h2>Pilih Paket Promote</h2>
+<h1>Kontak Calvyn GTPS</h1>
 
-    <div class="package">
-        <div>
-            <div class="package-name">Paket HEMAT</div>
-            <div class="package-price">Rp3.000</div>
-        </div>
-        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-    </div>
+<div class="contact-list">
+    <a href="https://wa.me/6281234567890" target="_blank" class="contact-item" title="WhatsApp Calvyn GTPS">
+        <div class="contact-icon">📱</div>
+        <div class="contact-link">WhatsApp Calvyn GTPS</div>
+    </a>
 
-    <div class="package">
-        <div>
-            <div class="package-name">Paket Normal</div>
-            <div class="package-price">Rp5.000</div>
-        </div>
-        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-    </div>
+    <a href="https://chat.whatsapp.com/Dsj3RgQOsswFU3ZX1B0pNR" target="_blank" class="contact-item" title="Group WhatsApp Calvyn GTPS">
+        <div class="contact-icon">👥</div>
+        <div class="contact-link">Group WhatsApp Calvyn GTPS</div>
+    </a>
 
-    <div class="package">
-        <div>
-            <div class="package-name">Paket Skip</div>
-            <div class="package-price">Rp10.000</div>
-        </div>
-        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-    </div>
+    <a href="https://discord.gg/example" target="_blank" class="contact-item" title="Group Discord Calvyn GTPS">
+        <div class="contact-icon">💬</div>
+        <div class="contact-link">Group Discord Calvyn GTPS</div>
+    </a>
 
-    <div class="package">
-        <div>
-            <div class="package-name">Paket MegaSkip</div>
-            <div class="package-price">Rp15.000</div>
-        </div>
-        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-    </div>
-
-    <div class="package">
-        <div>
-            <div class="package-name">Paket Skip 1 Server</div>
-            <div class="package-price">Rp5.000</div>
-        </div>
-        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-    </div>
-
-</main>
+    <a href="https://www.youtube.com/channel/UCexample" target="_blank" class="contact-item" title="Channel YouTube Calvyn GTPS">
+        <div class="contact-icon">▶️</div>
+        <div class="contact-link">Channel YouTube Calvyn GTPS</div>
+    </a>
+</div>
 
 <script>
     function toggleMenu() {
         const menu = document.getElementById('menu');
-        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-    }
-    function goToContact() {
-        window.location.href = 'contact.html';
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
     }
 </script>
 

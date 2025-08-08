@@ -18,14 +18,74 @@
         background: black;
         color: white;
         min-height: 100vh;
-        padding: 100px 20px 40px;
+        padding: 120px 20px 40px;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    img.logo {
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 119, 255, 0.3);
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #00aaff;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 119, 255, 0.5);
+        transition: 0.3s ease-in-out;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5px 0;
+        background: #004d80;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: 0.3s;
+        display: block;
+    }
+
+    nav a:hover {
+        background: #0077cc;
+    }
+
+    .menu-btn {
+        background: #004d80;
+        border: none;
+        padding: 10px 15px;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    img.logo-img {
         width: 150px;
         height: 150px;
         border-radius: 50%;
@@ -53,24 +113,26 @@
         border-radius: 12px;
         margin: 15px 0;
         padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         opacity: 0;
         transform: translateY(50px);
         transition: all 1s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .package-name {
         font-weight: 700;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         color: #c9b037;
+        margin-bottom: 10px;
     }
 
     .package-price {
         font-weight: 600;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         color: white;
+        margin-bottom: 15px;
     }
 
     .buy-btn {
@@ -82,19 +144,11 @@
         border-radius: 6px;
         cursor: pointer;
         transition: background 0.3s;
-        margin-left: 20px;
-        flex-shrink: 0;
+        width: fit-content;
     }
 
     .buy-btn:hover {
         background: #f0f0f0;
-    }
-
-    .package-content {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        justify-content: space-between;
     }
 
     .show {
@@ -105,70 +159,70 @@
 </head>
 <body>
 
-<img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png" alt="Logo Calvyn GTPS" class="logo" />
+<header>
+    <div class="logo">Calvyn GTPS</div>
+    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+    <nav id="menu">
+        <a href="index.html">Home</a>
+        <a href="promote.html">Promote</a>
+        <a href="gtpstools.html">GTPS Tools</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png" alt="Logo Calvyn GTPS" class="logo-img" />
 
 <h1 id="title">Paket Promote Calvyn GTPS</h1>
 
 <div class="package-list">
     <div class="package">
-        <div class="package-content">
-            <div class="package-name">HEMAT</div>
-            <div class="package-price">Rp 3.000</div>
-            <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-        </div>
+        <div class="package-name">HEMAT</div>
+        <div class="package-price">Rp 3.000</div>
+        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
     </div>
 
     <div class="package">
-        <div class="package-content">
-            <div class="package-name">Normal</div>
-            <div class="package-price">Rp 5.000</div>
-            <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-        </div>
+        <div class="package-name">Normal</div>
+        <div class="package-price">Rp 5.000</div>
+        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
     </div>
 
     <div class="package">
-        <div class="package-content">
-            <div class="package-name">Skip</div>
-            <div class="package-price">Rp 10.000</div>
-            <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-        </div>
+        <div class="package-name">Skip</div>
+        <div class="package-price">Rp 10.000</div>
+        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
     </div>
 
     <div class="package">
-        <div class="package-content">
-            <div class="package-name">MegaSkip</div>
-            <div class="package-price">Rp 15.000</div>
-            <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-        </div>
+        <div class="package-name">MegaSkip</div>
+        <div class="package-price">Rp 15.000</div>
+        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
     </div>
 
     <div class="package">
-        <div class="package-content">
-            <div class="package-name">Skip 1 Server</div>
-            <div class="package-price">Rp 5.000</div>
-            <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
-        </div>
+        <div class="package-name">Skip 1 Server</div>
+        <div class="package-price">Rp 5.000</div>
+        <button class="buy-btn" onclick="goToContact()">Buy? Click This</button>
     </div>
 </div>
 
 <script>
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
+
     function goToContact() {
         window.location.href = 'contact.html';
     }
 
-    // Enter effect animation
     window.addEventListener('load', () => {
         const title = document.getElementById('title');
         const packages = document.querySelectorAll('.package');
-        
-        setTimeout(() => {
-            title.classList.add('show');
-        }, 300);
 
+        setTimeout(() => title.classList.add('show'), 300);
         packages.forEach((pkg, i) => {
-            setTimeout(() => {
-                pkg.classList.add('show');
-            }, 600 + i * 300);
+            setTimeout(() => pkg.classList.add('show'), 600 + i * 300);
         });
     });
 </script>

@@ -204,23 +204,20 @@
 <script>
     function toggleMenu() {
         const menu = document.getElementById('menu');
-        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    function goToContact() {
-        window.location.href = 'contact.html';
-    }
-
-    window.addEventListener('load', () => {
-        const title = document.getElementById('title');
-        const packages = document.querySelectorAll('.package');
-
-        setTimeout(() => title.classList.add('show'), 300);
-        packages.forEach((pkg, i) => {
-            setTimeout(() => pkg.classList.add('show'), 600 + i * 300);
+    function revealOnScroll() {
+        document.querySelectorAll('.hero h1, .hero p, .extra-text').forEach(el => {
+            const triggerBottom = window.innerHeight * 0.85;
+            if (el.getBoundingClientRect().top < triggerBottom) {
+                el.classList.add('show');
+            }
         });
-    });
-</script>
+    }
 
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+</script>
 </body>
 </html>

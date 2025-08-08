@@ -1,202 +1,164 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>CalvynGTPS — Home</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calvyn GTPS</title>
 <style>
-  :root{
-    --bg:#080808;
-    --panel:#0f0f10;
-    --accent:#c41616;       /* merah */
-    --muted:#bdbdbd;
-    --glass: rgba(255,255,255,0.04);
-  }
-  html,body{height:100%;margin:0;font-family:Montserrat, sans-serif;background:linear-gradient(180deg,var(--bg),#040404);color:#eee;overflow-x:hidden;}
-  /* FULLSCREEN LAYOUT */
-  .wrap{min-height:100vh;display:grid;grid-template-rows:72px 1fr 80px;}
-  /* TOP BAR */
-  .topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,0,0,0.35));backdrop-filter: blur(6px);position:sticky;top:0;z-index:60;}
-  .brand{display:flex;gap:14px;align-items:center}
-  .logo {
-    width:48px;height:48px;border-radius:8px;
-    background:linear-gradient(135deg,#2a2a2a,#130000);
-    display:inline-grid;place-items:center;font-family:Cinzel,serif;font-weight:700;color:var(--accent);
-    box-shadow: 0 4px 18px rgba(196,22,22,0.08);
-  }
-  .brand h1{font-family:Cinzel, serif;font-size:18px;margin:0;color:#fff;letter-spacing:0.6px}
-  /* MENU BUTTON (toggle) */
-  .menu-btn{display:flex;gap:10px;align-items:center}
-  .btn{
-    background:var(--glass);border:1px solid rgba(255,255,255,0.04);padding:10px 14px;border-radius:10px;color:#fff;text-decoration:none;font-weight:600;cursor:pointer;
-    transition:transform .18s ease, background .18s;
-  }
-  .btn:active{transform:translateY(1px)}
-  .btn.join{background:linear-gradient(180deg,#27c359,#19a849);color:#04210b;border:none}
-  .btn.icon{display:inline-grid;place-items:center;width:44px;height:44px;padding:0}
-  .btn:hover{transform:translateY(-4px)}
-  /* SIDE PANEL MENU (hidden by default) */
-  .side-menu {
-    position:fixed;inset:0;display:flex;align-items:center;justify-content:flex-end;pointer-events:none;z-index:70;
-  }
-  .side-menu .backdrop {
-    position:absolute;inset:0;background:rgba(0,0,0,0.6);opacity:0;transition:opacity .28s;pointer-events:none;
-  }
-  .side-menu.open .backdrop{opacity:1;pointer-events:auto;}
-  .side-menu .panel {
-    width:360px;max-width:92%;height:100%;background:linear-gradient(180deg,var(--panel),#0b0b0b);
-    box-shadow: -24px 0 60px rgba(0,0,0,0.6);transform:translateX(30px);opacity:0;transition:transform .34s cubic-bezier(.2,.9,.2,1),opacity .34s;pointer-events:auto;
-    padding:36px 24px;display:flex;flex-direction:column;gap:18px;border-left:1px solid rgba(255,255,255,0.02);
-  }
-  .side-menu.open .panel{transform:translateX(0);opacity:1}
-  .panel .close{margin-left:auto;background:transparent;border:0;color:var(--muted);font-size:18px}
-  .nav-list{display:flex;flex-direction:column;gap:12px;margin-top:6px}
-  .nav-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;text-decoration:none;color:#fff;background:transparent;border:1px solid rgba(255,255,255,0.02)}
-  .nav-item:hover{background:rgba(196,22,22,0.06);border-color:rgba(196,22,22,0.12)}
-  .nav-item .k{width:40px;height:40px;border-radius:8px;background:linear-gradient(180deg,#180000,#2a0000);display:grid;place-items:center;font-weight:700;color:var(--accent)}
-  /* HERO / MAIN */
-  main{display:flex;align-items:center;justify-content:center;padding:36px;}
-  .hero {
-    width:100%;max-width:1100px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
-    border-radius:14px;padding:40px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)
-  }
-  .hero-left h2{font-family:Cinzel,serif;color:var(--accent);margin:0;font-size:36px}
-  .lead{color:#ddd;margin-top:12px;line-height:1.6;font-size:15.6px;opacity:.98}
-  .cta-row{margin-top:20px;display:flex;gap:12px;align-items:center}
-  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px 14px;border-radius:10px;color:var(--muted);font-weight:600}
-  .stat-cards{display:flex;flex-direction:column;gap:12px}
-  .card{background:linear-gradient(180deg,#0b0b0b,#0f0f0f);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-  .profile-shot{width:100%;height:260px;border-radius:10px;background:
-    linear-gradient(180deg,#240000,#180000);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:42px;font-family:Cinzel}
-  /* CONTENT BLOCKS — scroll reveal */
-  .content {padding:30px 60px 60px;max-width:1100px;margin:0 auto;display:grid;gap:24px}
-  .block{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);transform: translateY(18px);opacity:0;transition:all .6s ease}
-  .block.show{transform:none;opacity:1}
-  .block h3{color:var(--accent);margin:0 0 8px 0;font-family:Cinzel}
-  /* FOOTER */
-  .foot{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:transparent;border-top:1px solid rgba(255,255,255,0.02)}
-  .meta{color:var(--muted);font-size:13px}
-  /* RESP */
-  @media(max-width:980px){
-    .hero{grid-template-columns:1fr; padding:26px}
-    .profile-shot{height:180px}
-  }
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+    }
+    body {
+        background: linear-gradient(135deg, #000000, #1a0000);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+    }
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #ff1a1a;
+    }
+    nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5px 0;
+        background: #ff1a1a;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: 0.3s;
+        display: block;
+    }
+    nav a:hover {
+        background: #b30000;
+    }
+    .menu-btn {
+        background: #ff1a1a;
+        border: none;
+        padding: 10px 15px;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .hero {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+        color: #ff4d4d;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s;
+    }
+    .hero p {
+        font-size: 1.2rem;
+        margin-top: 15px;
+        max-width: 600px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s 0.3s;
+    }
+    .show {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    .join-btn {
+        display: inline-block;
+        background: #ff1a1a;
+        padding: 12px 20px;
+        margin-top: 25px;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .join-btn:hover {
+        background: #b30000;
+    }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="brand">
-      <div class="logo">C</div>
-      <div>
-        <div style="font-size:13px;color:var(--muted)">Calvyn</div>
-        <div style="font-size:12px;color:#999">GTPS Promoter</div>
-      </div>
-    </div>
+<header>
+    <div class="logo">Calvyn GTPS</div>
+    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+    <nav id="menu">
+        <a href="calvyn.html">Home</a>
+        <a href="promote.html">Promote</a>
+        <a href="gtpstools.html">GTPS Tools</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
 
-    <div class="menu-btn">
-      <button class="btn" onclick="scrollToContent()">Explore</button>
-      <a class="btn join" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">Join Group</a>
-      <button class="btn icon" id="openMenu" aria-label="Open menu">≡</button>
-    </div>
-  </div>
-
-  <!-- SIDE MENU -->
-  <div class="side-menu" id="sideMenu">
-    <div class="backdrop" onclick="closeMenu()"></div>
-    <aside class="panel" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
-      <button class="close" onclick="closeMenu()">✕</button>
-      <h2 id="menuTitle" style="margin:8px 0 2px 0;color:#fff;font-family:Cinzel">Menu</h2>
-      <p style="color:var(--muted);margin:0 0 14px 0;font-size:13px">Navigasi cepat</p>
-
-      <nav class="nav-list">
-        <a class="nav-item" href="calvyn.html"><div class="k">H</div><div>Home</div></a>
-        <a class="nav-item" href="promote.html"><div class="k">P</div><div>Promote</div></a>
-        <a class="nav-item" href="gtpstools.html"><div class="k">T</div><div>GTPS Tools</div></a>
-        <a class="nav-item" href="contact.html"><div class="k">C</div><div>Contact</div></a>
-        <a class="nav-item" href="https://wa.me/639097571277" target="_blank"><div class="k">W</div><div>Chat Calvyn</div></a>
-        <a class="nav-item" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank"><div class="k">G</div><div>Join CalvynGTPS Group</div></a>
-      </nav>
-
-      <div style="margin-top:auto;font-size:13px;color:var(--muted)">© 2025 CalvynGTPS</div>
-    </aside>
-  </div>
-
-  <!-- MAIN -->
-  <main>
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-left">
-        <h2 id="heroTitle">Calvyn GTPS — Grow your server</h2>
-        <p class="lead">Saya bantu promote server GTPS kamu supaya ramai. Paket fleksibel, cepat, dan aman. Fokus pada hasil — supaya server kamu penuh pemain.</p>
-
-        <div class="cta-row">
-          <a class="btn" href="promote.html">Lihat Paket</a>
-          <a class="btn ghost" href="gtpstools.html">Cara Login</a>
-        </div>
-
-        <div style="margin-top:18px;color:var(--muted);font-size:14px">
-          <strong>Raih lebih banyak pemain</strong> — paket mulai dari Rp 3.000.
-        </div>
-      </div>
-
-      <aside>
-        <div class="stat-cards">
-          <div class="card">
-            <div style="font-size:13px;color:var(--muted)">Popularitas</div>
-            <div style="font-size:28px;font-weight:700;color:#fff">+3.2K</div>
-          </div>
-          <div class="card profile-shot">CALVYN</div>
-          <div class="card">
-            <div style="font-size:13px;color:var(--muted)">Waktu pengerjaan</div>
-            <div style="font-size:18px;font-weight:700">24 — 72 jam</div>
-          </div>
-        </div>
-      </aside>
-    </section>
-  </main>
-
-  <!-- CONTENT BLOCKS -->
-  <div class="content" id="contentArea">
-    <div class="block"><h3>Kenapa pilih kami?</h3><p>Kami fokus pada strategi promote yang aman — tanpa cheat. Tim berpengalaman dan update metode sesuai tren GTPS.</p></div>
-    <div class="block"><h3>Testimoni singkat</h3><p>Server A naik x3 pemain setelah 2 hari promote. Server B stabil di rata-rata 150 pemain per hari.</p></div>
-    <div class="block"><h3>Promo</h3><p>Lihat halaman Promote untuk daftar paket lengkap dan cara order cepat lewat WhatsApp.</p></div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="foot">
-    <div class="meta">CalvynGTPS • Promote Service</div>
+<section class="hero">
     <div>
-      <a class="btn" href="contact.html">Kontak</a>
-      <a class="btn join" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D" target="_blank">Join Group</a>
+        <h1>Selamat Datang di Calvyn GTPS</h1>
+        <p>Tempat terbaik untuk bermain Growtopia Private Server dengan fitur keren, komunitas aktif, dan layanan promote yang cepat & terpercaya.</p>
+        <a class="join-btn" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D">📢 Join Calvyn GTPS Group</a>
     </div>
-  </div>
-
-</div>
+</section>
 
 <script>
-  // Menu toggle
-  const sideMenu = document.getElementById('sideMenu');
-  document.getElementById('openMenu').addEventListener('click', () => {
-    sideMenu.classList.toggle('open');
-  });
-  function closeMenu(){ sideMenu.classList.remove('open') }
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
 
-  // scroll reveal (simple)
-  const blocks = document.querySelectorAll('.block');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('show');
-    });
-  }, {threshold:0.18});
-  blocks.forEach(b=>io.observe(b));
+    function revealOnScroll() {
+        const heroH1 = document.querySelector('.hero h1');
+        const heroP = document.querySelector('.hero p');
+        const triggerBottom = window.innerHeight * 0.85;
 
-  function scrollToContent(){ document.getElementById('contentArea').scrollIntoView({behavior:'smooth'}); }
+        if (heroH1.getBoundingClientRect().top < triggerBottom) {
+            heroH1.classList.add('show');
+        }
+        if (heroP.getBoundingClientRect().top < triggerBottom) {
+            heroP.classList.add('show');
+        }
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
 </script>
 
 </body>

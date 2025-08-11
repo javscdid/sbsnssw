@@ -15,8 +15,8 @@
     }
 
     body {
-        background: #000; /* full hitam */
-        color: white; /* default putih */
+        background: #000;
+        color: white;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -39,7 +39,7 @@
     .logo {
         font-size: 1.5rem;
         font-weight: 800;
-        color: #f9d976; /* kuning gold muda */
+        color: #f9d976;
     }
 
     nav {
@@ -104,7 +104,7 @@
 
     .hero h1 {
         font-size: 2.2rem;
-        color: #f9d976; /* kuning gold muda */
+        color: #f9d976;
         opacity: 0;
         transform: translateY(50px);
         transition: 1s;
@@ -117,7 +117,7 @@
         opacity: 0;
         transform: translateY(50px);
         transition: 1s 0.3s;
-        color: white; /* putih */
+        color: white;
     }
 
     .extra-text {
@@ -127,7 +127,7 @@
         opacity: 0;
         transform: translateY(50px);
         transition: 1s 0.6s;
-        color: white; /* putih */
+        color: white;
     }
 
     .show {
@@ -143,7 +143,7 @@
         border-radius: 6px;
         font-size: 1.1rem;
         font-weight: bold;
-        color: #f9d976; /* kuning gold muda */
+        color: #f9d976;
         text-decoration: none;
         transition: 0.3s;
         border: 2px solid #f9d976;
@@ -170,11 +170,17 @@
 </header>
 
 <section class="hero">
-    <img src= https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png?ex=68971176&is=6895bff6&hm=7d64188bfd82f3759ab8628ef0b799f45bde02473ce46925197e3424b0307277&" alt="Logo Calvyn GTPS" />
+    <img src="https://cdn.discordapp.com/attachments/1375068909912457229/1403305362471391384/20250721_204531.png" alt="Logo Calvyn GTPS" />
     <h1>Selamat Datang di Calvyn GTPS</h1>
     <p>Tempat terbaik untuk mempromosikan server Growtopia Private Anda dengan cepat, aman, dan terpercaya.</p>
     <p class="extra-text">Kami menyediakan layanan promote yang efektif, komunitas yang ramah, dan dukungan penuh untuk pertumbuhan server Anda.</p>
     <a class="join-btn" href="https://whatsapp.com/channel/0029Vb6bzRLADTO5GQx1vq0D">📢 Join Calvyn GTPS Group</a>
+</section>
+
+<!-- Latest Videos -->
+<section id="latest-videos" style="padding:30px; max-width:1000px; margin:auto;">
+  <h2 style="color:#00ff66; margin-bottom:15px;">Latest Videos</h2>
+  <div id="video-list" style="display:flex; gap:15px; flex-wrap:wrap;"></div>
 </section>
 
 <script>
@@ -194,6 +200,30 @@
 
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
+
+    // Fetch video terbaru dari YouTube
+    const channelId = "UC3mgRkLaJi_qbHBj8oksyHg";
+    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+
+    fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`)
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("video-list");
+        data.items.slice(0, 3).forEach(video => {
+          const videoId = video.link.split("v=")[1];
+          const thumb = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+          const el = document.createElement("a");
+          el.href = video.link;
+          el.target = "_blank";
+          el.style.cssText = "flex:1 1 calc(33% - 15px); text-decoration:none; color:white;";
+          el.innerHTML = `
+            <img src="${thumb}" style="width:100%; border-radius:8px;">
+            <p style="margin-top:8px; font-weight:600;">${video.title}</p>
+          `;
+          container.appendChild(el);
+        });
+      })
+      .catch(err => console.error(err));
 </script>
 
 </body>

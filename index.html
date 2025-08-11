@@ -179,8 +179,8 @@
 
 <!-- Latest Videos -->
 <section id="latest-videos" style="padding:30px; max-width:1000px; margin:auto;">
-  <h2 style="color:#00ff66; margin-bottom:15px;">Latest Videos</h2>
-  <div id="video-list" style="display:flex; gap:15px; flex-wrap:wrap;"></div>
+  <h2 style="color:#f9d976; margin-bottom:20px; border-bottom:2px solid #f9d976; padding-bottom:5px;">🎥 Video Terbaru</h2>
+  <div id="video-list" style="display:flex; flex-direction:column; gap:15px;"></div>
 </section>
 
 <script>
@@ -201,7 +201,7 @@
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
 
-    // Fetch video terbaru dari YouTube
+    // Fetch 3 video terbaru YouTube - horizontal layout
     const channelId = "UC3mgRkLaJi_qbHBj8oksyHg";
     const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 
@@ -212,14 +212,33 @@
         data.items.slice(0, 3).forEach(video => {
           const videoId = video.link.split("v=")[1];
           const thumb = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+          const shortTitle = video.title.length > 60 ? video.title.substring(0, 57) + "..." : video.title;
+
           const el = document.createElement("a");
           el.href = video.link;
           el.target = "_blank";
-          el.style.cssText = "flex:1 1 calc(33% - 15px); text-decoration:none; color:white;";
-          el.innerHTML = `
-            <img src="${thumb}" style="width:100%; border-radius:8px;">
-            <p style="margin-top:8px; font-weight:600;">${video.title}</p>
+          el.style.cssText = `
+            display:flex;
+            align-items:center;
+            background:#111;
+            border:2px solid #f9d976;
+            border-radius:10px;
+            overflow:hidden;
+            text-decoration:none;
+            color:white;
+            transition:0.3s;
           `;
+          el.onmouseover = () => el.style.background = "#222";
+          el.onmouseout = () => el.style.background = "#111";
+
+          el.innerHTML = `
+            <img src="${thumb}" style="width:160px; height:90px; object-fit:cover; flex-shrink:0;">
+            <div style="padding:10px;">
+              <p style="font-weight:600; font-size:1rem; color:#f9d976; margin-bottom:5px;">${shortTitle}</p>
+              <small style="color:#ccc;">${new Date(video.pubDate).toLocaleDateString('id-ID')}</small>
+            </div>
+          `;
+
           container.appendChild(el);
         });
       })
